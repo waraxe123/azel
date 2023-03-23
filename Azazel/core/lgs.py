@@ -14,9 +14,9 @@
 
 #
 
-from Ubot.modules.basic import *
+from Azazel.modules.basic import *
 
-from Ubot import *
+from Azazel import *
 
 import requests
 
