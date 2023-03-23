@@ -6,8 +6,8 @@ from pyrogram.types import Message
 from . import *
 
 
-from Ubot.core.SQL import no_log_pms_sql
-from Ubot.core.SQL.globals import addgvar, gvarstatus
+from Azazel.core.SQL import no_log_pms_sql
+from Azazel.core.SQL.globals import addgvar, gvarstatus
 from ubotlibs.ubot.utils.tools import get_arg
 
 
