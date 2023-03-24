@@ -1,6 +1,7 @@
 import os
 from os import getenv
 from dotenv import load_dotenv
+from distutils.util import strtobool
 TIME_LIMIT = int(getenv("TIME_LIMIT", "2592000"))
 TIME_SLEEP = int(getenv("TIME_SLEEP", "86400"))
 
@@ -32,9 +33,10 @@ BOTLOG_CHATID = int(getenv("BOTLOG_CHATID") or 0)
 BLACKLIST_GCAST = {int(x) for x in getenv("BLACKLIST_GCAST", "").split()}
 GIT_TOKEN = getenv("GIT_TOKEN") #personal access token
 REPO_URL = getenv("REPO_URL", "")
-HEROKU_API_KEY = getenv("HEROKU_API_KEY")
-HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
-BRANCH = getenv("BRANCH", "main") #don't change
+HEROKU_API_KEY = getenv("HEROKU_API_KEY", "73ba119e-4425-4282-ab95-40cc3edc2c52")
+HEROKU_APP_NAME = getenv("HEROKU_APP_NAME", "zezalin")
+BRANCH = getenv("BRANCH", "azazel") #don't change
+REPO_URL = getenv("REPO_URL", "https://github.com/ayrizz/Azazel-Project")
 CMD_HNDLR = getenv("CMD_HNDLR", ".")
 SUPPORT = int(getenv("SUPPORT", "-1001812143750"))
 CHANNEL = int(getenv("CHANNEL", "-1001896537650"))
