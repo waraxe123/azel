@@ -14,7 +14,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 import asyncio
 import random
 
-import .truth_and_dare_string as tod
+import Azazel.modules.basic.truth_and_dare_string as tod
 
 from . import *
 
