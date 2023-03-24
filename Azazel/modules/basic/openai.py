@@ -9,6 +9,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.errors import MessageNotModified
 from . import *
+from Azazel.core import *
 from asyncio import gather
 from config import OPENAI_API
 
