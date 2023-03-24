@@ -187,3 +187,28 @@ async def usage_dynos(client, message):
 Dyno tersisa:
   ╰ Tersisa: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
+    
+    
+async def kok_bacotlog():
+    botlog_chat_id = os.environ.get('BOTLOG_CHATID')
+    if botlog_chat_id:
+        return
+   
+    group_name = 'Azazel Project Log'
+    group_description = 'Log Group Azazel-Project'
+    group = await bot1.create_supergroup(group_name, group_description)
+
+    if await is_heroku():
+        try:
+            Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
+            happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
+            happ.config()['BOTLOG_CHATID'] = str(group.id)
+        except:
+            pass
+    else:
+        with open('.env', 'a') as env_file:
+            env_file.write(f'\nBOTLOG_CHATID={group.id}')
+
+    message_text = 'Grouplog Berhasil Dibuat,\nMohon Masukkan Bot Anda Ke Group Ini, dan Aktifkan Mode Inline.\nRestarting...!'
+    await bot1.send_message(group.id, message_text)
+    restart()
