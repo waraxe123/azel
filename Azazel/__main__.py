@@ -10,6 +10,7 @@ from Azazel import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, event_
 from platform import python_version as py
 from Azazel.logging import LOGGER
 from pyrogram import __version__ as pyro
+from Azazel.modules.bot.start import kok_bacotlog
 
 from Azazel.modules import ALL_MODULES
 from config import SUPPORT, CHANNEL
