@@ -79,7 +79,7 @@ async def speech_to_text(client: Client, message: Message):
     reply = message.reply_to_message
     if not (reply and reply.voice):
         return await message.edit("Please reply to a voice message")
-    await message.edit("processing...")
+    await message.edit("`Processing...`")
     voice_file = await client.download_media(message=reply, file_name='downloads/voice.ogg')
 
     @run_in_exc
@@ -110,7 +110,7 @@ async def speech_to_text(client: Client, message: Message):
 
 
 add_command_help(
-    "voice",
+    "Voice",
     [
         [f"tts [reply]", "Ubah teks menjadi suara oleh google."],
         [f"stt [reply]", "ubah Voice Note menjadi text (default bahasa : Indonesia)."],
