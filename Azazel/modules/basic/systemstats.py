@@ -106,5 +106,8 @@ add_command_help(
     "System",
     [
         [f"stats", "Melihat statistik sistem."],
+        ["restart", "Untuk merestart userbot."],
+        ["shutdown", "Untuk mematikan userbot."],
+        ["logs", "Untuk melihat logs userbot."],
     ],
 )
