@@ -18,7 +18,7 @@ from pyrogram import __version__, filters, Client
 from pyrogram.types import Message
 from config import ALIVE_PIC, ALIVE_TEXT
 from Azazel import START_TIME, SUDO_USER, app
-from Azazel.modules.bot.inline import get_readable_time
+from Azazel.modules.bot.inline import get_readable_time, BOT_VER
 
 
 alive_logo = ALIVE_PIC or ""
