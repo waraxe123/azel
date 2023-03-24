@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from Azazel import cmds, app, BOTLOG_CHATID
 from Azazel.core import *
+from Azazel.logging import LOGGER
 from ubotlibs.ubot import Ubot
 import os
 import sys
