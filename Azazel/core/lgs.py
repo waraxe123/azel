@@ -547,7 +547,7 @@ async def logo_write(client, message):
 
         image_widthz, image_heightz = img.size
 
-        fnt = glob.glob("Ubot/resources/fonts/*")
+        fnt = glob.glob("Azazel//resources/fonts/*")
 
         randf = choice(fnt)
 
@@ -636,7 +636,7 @@ async def logo_write(client, message):
 
         image_widthz, image_heightz = img.size
 
-        fnt = glob.glob("Ubot/resources/fonts/*")
+        fnt = glob.glob("Azazel//resources/fonts/*")
 
         randf = choice(fnt)
 
