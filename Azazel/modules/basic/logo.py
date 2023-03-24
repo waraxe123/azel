@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pyrogram import Client, filters
 
 from pyrogram import Client, filters, enums
-
+from Azazel.core.lgs import *
 from . import *
 
 @Ubot(["logo2"], "")
