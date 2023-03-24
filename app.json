@@ -28,10 +28,10 @@
             "required": false,
             "value": ""
         },
-        "BOTLOG_CHATID": {
-            "description": "Isi jhor",
+        "PM_AUTO_BAN": {
+            "description": "Isi Tue",
             "required": true,
-            "value": "-100"
+            "value": "True"
         },
         "BOT_TOKEN": {
             "description": "fill with your bot token get from @BotFather on telegram",
