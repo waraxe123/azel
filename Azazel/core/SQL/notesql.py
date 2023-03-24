@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Numeric, String, UnicodeText
 
-from Ubot.core.SQL import BASE, SESSION
+from Azazel.core.SQL import BASE, SESSION
 
 class Note(BASE):
 
