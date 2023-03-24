@@ -18,14 +18,6 @@ from dotenv import load_dotenv
 
 
 
-MSG_BOT = """
-╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-**New Ubot Actived ✅**
-**Phython**: `{}`
-**Pyrogram**: `{}`
-╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
-"""
-
 MSG_ON = """
 **New Ubot Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
@@ -33,7 +25,7 @@ MSG_ON = """
 ◉ **Phython** : `{}`
 ◉ **Pyrogram** : `{}`
 
-**Ketik** `alive` atau `Alive`
+**Ketik** `alive`
 **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 """
@@ -49,6 +41,7 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             await join(bot)
+            await kok_bacotlog()
             try:
             	await app.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, py, pyro))
             except BaseException as a:
