@@ -8,6 +8,13 @@ import shutil
 import sys
 import dotenv
 import datetime
+import asyncio
+import math
+import os
+import dotenv
+import heroku3
+import requests
+import urllib3
 from dotenv import load_dotenv
 from os import environ, execle, path
 from datetime import datetime, timedelta
@@ -40,6 +47,24 @@ ANU = """
 ╰╼ **ID**: {}
 """
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+XCB = [
+    "/",
+    "@",
+    ".",
+    "com",
+    ":",
+    "git",
+    "heroku",
+    "push",
+    str(HEROKU_API_KEY),
+    "https",
+    str(HEROKU_APP_NAME),
+    "HEAD",
+    "main",
+]
 
 
 @app.on_message(filters.command(["start"]))
