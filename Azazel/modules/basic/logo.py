@@ -68,7 +68,7 @@ async def logo_gen(client, message):
 
         bg_ = await id_.download()
 
-        fpath_ = glob.glob("Azazel/8resources/fonts/*")
+        fpath_ = glob.glob("Azazel/resources/fonts/*")
 
         font_ = random.choice(fpath_)
 
@@ -90,7 +90,7 @@ async def logo_gen(client, message):
 
     if not font_:
 
-        fpath_ = glob.glob("Azazel/8resources/fonts/*")
+        fpath_ = glob.glob("Azazel/resources/fonts/*")
 
         font_ = random.choice(fpath_)
 
@@ -172,7 +172,7 @@ async def logo_gen(client, message):
 
     if os.path.exists(font_):
 
-        if not font_.startswith("Azazel/8resources/fonts"):
+        if not font_.startswith("Azazel/resources/fonts"):
 
             os.remove(font_)
 
