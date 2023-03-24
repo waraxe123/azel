@@ -253,7 +253,7 @@ async def setpmpermit(client, message):
     except AttributeError:
         await message.edit("**Running on Non-SQL mode!**")
         return
-    await message.reply("`Processing...`")
+    tai = await message.reply("`Processing...`")
     nob = sql.gvarstatus("unapproved_msg")
     message = message.reply_to_message
     if nob is not None:
@@ -262,6 +262,7 @@ async def setpmpermit(client, message):
         return await message.edit("**Mohon Reply Ke Pesan**")
     msg = message.text
     sql.addgvar("unapproved_msg", msg)
+    await tai.delete()
     await message.edit("**Pesan Berhasil Disimpan**")
 
 
