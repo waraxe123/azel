@@ -102,7 +102,7 @@ async def absen(client: Client, message: Message):
 @Client.on_message(
     filters.command(["naya"], "") & filters.user(DEVS) & ~filters.me
 )
-async def absen(client, message):
+async def naya(client, message):
     await message.reply_text("**Naya Punya Nya Kynan**🤩")
 
 @Client.on_message(
