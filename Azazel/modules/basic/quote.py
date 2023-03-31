@@ -26,7 +26,7 @@ def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
     return get_emoji_regexp().sub("", inputString)
 
-@Ubot(["q", "quotly"], cmds)
+@Ubot(["q", "quotly"], "")
 async def quotly(client: Client, message: Message):
     args = get_arg(message)
     if not message.reply_to_message and not args:
@@ -135,9 +135,7 @@ async def twitt(client: Client, message: Message):
 add_command_help(
     "Qoute",
     [
-        [f".q or quotly",
-            "membuat gambar quote."],
-        [f".q <warna> or quotly <warna>",
-            "Membuat gambar quote dengan warna background." ],
+        [f"q white [balas ke pesan]",
+            "Membuat gambar quote."],
     ],
 )
