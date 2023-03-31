@@ -209,6 +209,6 @@ async def kok_bacotlog():
         with open('.env', 'a') as env_file:
             env_file.write(f'\nBOTLOG_CHATID={group.id}')
 
-    message_text = 'Grouplog Berhasil Dibuat,\nMohon Masukkan Bot Anda Ke Group Ini, dan Aktifkan Mode Inline.\nRestarting...!'
+    message_text = 'Grouplog Berhasil Dibuat,\nMohon Masukkan Bot Anda Ke Group Ini, dan Aktifkan Mode Inline.\n\n**Catatan**: Ini adalah userbot tanpa prefix ! Jadi tidak memakai triger `.`\n\nRestarting...!'
     await bot1.send_message(group.id, message_text)
     restart()
