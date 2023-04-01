@@ -1,7 +1,7 @@
 from asyncio import sleep
 from pyrogram import Client, filters
 from Azazel.core.SQL.notesql import *
-from Azazel.core.SQL.globals import *
+from Azazel.core.SQL.botlogqsl import *
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import *
 from . import *
@@ -15,7 +15,7 @@ async def simpan_note(client, message):
     keyword = get_arg(message)
     user_id = message.from_user.id
     msg = message.reply_to_message
-    botlog_chat_id = await get_botlog(str(user_id))
+    botlog_chat_id = get_botlog(user_id))
     if not msg:
         return await message.reply("Tolong balas ke pesan")
     anu = await msg.forward(botlog_chat_id)
