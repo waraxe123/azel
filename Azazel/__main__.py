@@ -10,7 +10,7 @@ from Azazel import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, event_
 from platform import python_version as py
 from Azazel.logging import LOGGER
 from pyrogram import __version__ as pyro
-from Azazel.modules.bot.start import kok_bacotlog
+from Azazel.core.SQL.globals import *
 
 from Azazel.modules import ALL_MODULES
 from config import SUPPORT, CHANNEL
@@ -41,10 +41,12 @@ async def main():
         try:
             await bot.start()
             ex = await bot.get_me()
+            user_id = ex.id
             await join(bot)
-            await kok_bacotlog()
+            await buat_log(bot)
+            botlog_chat_id = await get_botlog(str(user_id))
             try:
-            	await app.send_message(BOTLOG_CHATID, MSG_ON.format(BOT_VER, py, pyro))
+            	await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py, pyro))
             except BaseException as a:
                 LOGGER("✓").warning(f"{a}")
             LOGGER("✓").info("Startup Completed")
@@ -54,7 +56,7 @@ async def main():
             LOGGER("X").info(f"{e}")
     await idle()
     await aiosession.close()
-    
+    await app.stop()
 
 
               
