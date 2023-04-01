@@ -55,7 +55,7 @@ def gvarstatus(user_id, variable):
         SESSION.close()
         
         
-async def buat_log(bot variable):
+async def buat_log(bot, variable):
     user = await bot.get_me()
     user_id = user.id
     user_data = SESSION.query(Globals).filter(Globals.user_id == user_id, Globals.variable == str(variable)).first()
