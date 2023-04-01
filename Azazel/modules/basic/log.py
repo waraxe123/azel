@@ -5,7 +5,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from . import *
 from Ubot.core.SQL import no_log_pms_sql
-from Ubot.core.SQL.globals import addgvar, gvarstatus, delgvar
+from Ubot.core.SQL.globals import *
 from ubotlibs.ubot.utils.tools import get_arg
 
 
