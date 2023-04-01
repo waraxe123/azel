@@ -22,12 +22,6 @@ class Globals(BASE):
 Globals.__table__.create(checkfirst=True)
 
 
-def ambil_grup(user_id):
-    try:
-        return SESSION.query(Globals).filter(Globals.user_id == user_id, Globals.variable == "GRUPLOG").one().value
-    except NoResultFound:
-        return None
-
 def addgvar(user_id, variable, value):
     if SESSION.query(Globals).filter(Globals.user_id == user_id, Globals.variable == str(variable)).one_or_none():
         delgvar(user_id, variable)
@@ -54,7 +48,7 @@ def gvarstatus(user_id, variable):
     finally:
         SESSION.close()
         
-        
+"""
 async def buat_log(bot, variable):
     user = await bot.get_me()
     user_id = user.id
@@ -99,3 +93,4 @@ async def set_botlog(user_id, variable):
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
+""
