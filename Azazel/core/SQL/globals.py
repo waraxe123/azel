@@ -84,14 +84,14 @@ async def buat_log(bot):
    
     
 async def get_botlog(user_id):
-    user_data = SESSION.query(Globals).filter_by(user_id=str(user_id), variable="bot_log_group_id").first()
+    user_data = SESSION.query(Globals).filter(Globals.user_id == user_id, Globals.variable == str(variable)).first()
     botlog_chat_id = user_data.value if user_data else None
     SESSION.close()
     return int(botlog_chat_id) if botlog_chat_id else None
 
 
 async def set_botlog(user_id, botlog_chat_id):
-    botlog = SESSION.query(Globals).filter_by(user_id=str(user_id), variable="bot_log_group_id").first()
+    botlog = SESSION.query(Globals).filter_by(Globals.user_id == user_id, Globals.variable == str(variable)).first()
     if botlog:
         botlog.value = str(botlog_chat_id)
     else:
