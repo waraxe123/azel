@@ -55,10 +55,10 @@ def gvarstatus(user_id, variable):
         SESSION.close()
         
         
-async def buat_log(bot):
+async def buat_log(bot variable):
     user = await bot.get_me()
     user_id = user.id
-    user_data = SESSION.query(Globals).filter_by(user_id=str(user_id), variable="bot_log_group_id").first()
+    user_data = SESSION.query(Globals).filter(Globals.user_id == user_id, Globals.variable == str(variable)).first()
     botlog_chat_id = None
 
     if user_data:
@@ -75,7 +75,7 @@ async def buat_log(bot):
         if user_data:
             user_data.value = str(botlog_chat_id)
         else:
-            user_data = Globals("bot_log_group_id", str(botlog_chat_id), str(user_id))
+            user_data = Globals(user_id=user_id, variable=str(variable))
             SESSION.add(user_data)
         SESSION.commit()
     SESSION.close()
@@ -95,7 +95,7 @@ async def set_botlog(user_id, variable):
     if botlog:
         botlog.value = str(botlog_chat_id)
     else:
-        botlog = Globals("bot_log_group_id", str(botlog_chat_id), str(user_id))
+        botlog = Globals(user_id=user_id, variable=str(variable))
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
