@@ -93,4 +93,4 @@ async def set_botlog(user_id, variable):
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
-""
+"""
