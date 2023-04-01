@@ -108,7 +108,7 @@ async def set_log(client, message):
         return
     user_id = client.me.id
     chat_id = message.chat.id
-    await set_botlog(str(user_id), botlog_chat_id)
+    await set_botlog(str(user_id), "log_group", botlog_chat_id)
     await message.reply_text(f"ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.")
 
 @Ubot(["taglog"], "")
