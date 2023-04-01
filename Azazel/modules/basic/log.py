@@ -26,7 +26,7 @@ LOG_CHATS_ = LOG_CHATS()
 async def monito_p_m_s(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog_chat_id = await get_botlog(str(user_id))
+    botlog_chat_id = get_botlog(str(user_id))
     if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
         return
     if not no_log_pms_sql.is_approved(message.chat.id) and message.chat.id != 777000:
@@ -57,7 +57,7 @@ async def monito_p_m_s(client, message):
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog_chat_id = await get_botlog(str(user_id))
+    botlog_chat_id = get_botlog(str(user_id))
     if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG") == "false":
         return
     if (no_log_pms_sql.is_approved(message.chat.id)):
@@ -108,7 +108,7 @@ async def set_log(client, message):
         return
     user_id = client.me.id
     chat_id = message.chat.id
-    await set_botlog(str(user_id), group_id)
+    set_botlog(str(user_id), group_id)
     await message.reply_text(f"ID Grup Log telah diatur ke {group_id} untuk grup ini.")
 
 @Ubot(["taglog"], "")
