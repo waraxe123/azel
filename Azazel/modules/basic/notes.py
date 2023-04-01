@@ -1,6 +1,7 @@
 from asyncio import sleep
 from pyrogram import Client, filters
 from Azazel.core.SQL.notesql import *
+from Azazel.core.SQL.globals import *
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import *
 from . import *
@@ -14,11 +15,12 @@ async def simpan_note(client, message):
     keyword = get_arg(message)
     user_id = message.from_user.id
     msg = message.reply_to_message
+    botlog_chat_id = await get_botlog(str(user_id))
     if not msg:
         return await message.reply("Tolong balas ke pesan")
-    anu = await msg.forward(BOTLOG_CHATID)
+    anu = await msg.forward(botlog_chat_id)
     msg_id = anu.id
-    await client.send_message(BOTLOG_CHATID,
+    await client.send_message(botlog_chat_id,
         f"#NOTE\nKEYWORD: {keyword}"
         "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon JANGAN dihapus !!",
     )
@@ -32,9 +34,10 @@ async def panggil_notes(client, message):
     notename = get_arg(message)
     user_id = message.from_user.id
     note = get_note(str(user_id), notename)
+    botlog_chat_id = await get_botlog(str(user_id))
     if not note:
         return await message.reply("Tidak ada catatan seperti itu.")
-    msg_o = await client.get_messages(BOTLOG_CHATID, int(note.f_mesg_id))
+    msg_o = await client.get_messages(botlog_chat_id, int(note.f_mesg_id))
     await msg_o.copy(message.chat.id, reply_to_message_id=message.id)
 
 
