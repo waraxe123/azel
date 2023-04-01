@@ -1,7 +1,7 @@
 from asyncio import sleep
 from pyrogram import Client, filters
 from Azazel.core.SQL.notesql import *
-from Azazel.core.SQL.botlogqsl import *
+from Azazel.core.SQL.botlogsql import *
 from pyrogram.types import Message
 from ubotlibs.ubot.utils.tools import *
 from . import *
@@ -34,7 +34,7 @@ async def panggil_notes(client, message):
     notename = get_arg(message)
     user_id = message.from_user.id
     note = get_note(str(user_id), notename)
-    botlog_chat_id = await get_botlog(str(user_id))
+    botlog_chat_id = get_botlog(user_id)
     if not note:
         return await message.reply("Tidak ada catatan seperti itu.")
     msg_o = await client.get_messages(botlog_chat_id, int(note.f_mesg_id))
