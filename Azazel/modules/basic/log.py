@@ -5,7 +5,7 @@ from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 from . import *
 from Azazel.core.SQL import no_log_pms_sql
-from Azazel.core.SQL.globals import *
+from Azazel.core.SQL.botlogsql import *
 from ubotlibs.ubot.utils.tools import get_arg
 
 
@@ -26,7 +26,7 @@ LOG_CHATS_ = LOG_CHATS()
 async def monito_p_m_s(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog_chat_id = await get_botlog(str(user_id), "log_group")
+    botlog_chat_id = await get_botlog(str(user_id))
     if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
         return
     if not no_log_pms_sql.is_approved(message.chat.id) and message.chat.id != 777000:
@@ -57,7 +57,7 @@ async def monito_p_m_s(client, message):
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog_chat_id = await get_botlog(str(user_id), "log_group")
+    botlog_chat_id = await get_botlog(str(user_id))
     if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG") == "false":
         return
     if (no_log_pms_sql.is_approved(message.chat.id)):
@@ -102,14 +102,14 @@ async def set_pmlog(client, message):
 @Ubot("setlog", "")
 async def set_log(client, message):
     try:
-        botlog_chat_id = int(message.text.split(" ")[1])
+        group_id = int(message.text.split(" ")[1])
     except (ValueError, IndexError):
         await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
         return
     user_id = client.me.id
     chat_id = message.chat.id
-    await set_botlog(str(user_id), "log_group", botlog_chat_id)
-    await message.reply_text(f"ID Grup Log telah diatur ke {botlog_chat_id} untuk grup ini.")
+    await set_botlog(str(user_id), group_id)
+    await message.reply_text(f"ID Grup Log telah diatur ke {group_id} untuk grup ini.")
 
 @Ubot(["taglog"], "")
 async def set_gruplog(client, message):
