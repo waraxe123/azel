@@ -99,7 +99,7 @@ async def set_pmlog(client, message):
     else:
         await message.edit("**PM Log Sudah Dimatikan**")
 
-
+    
 @Ubot("setlog", "")
 async def set_log(client, message):
     try:
@@ -109,8 +109,9 @@ async def set_log(client, message):
         return
     user_id = client.me.id
     chat_id = message.chat.id
-    set_botlog(str(user_id), int(group_id))
+    set_botlog(user_id, group_id)
     await message.reply_text(f"ID Grup Log telah diatur ke {group_id} untuk grup ini.")
+
 
 @Ubot(["taglog"], "")
 async def set_gruplog(client, message):
