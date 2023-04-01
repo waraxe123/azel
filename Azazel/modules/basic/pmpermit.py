@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 
 from . import *
 from Azazel import TEMP_SETTINGS
-from Azazel.core.SQL.globals import *
+from Azazel.core.SQL.botlogsql import *
 from ubotlibs.ubot.utils.tools import get_arg
 
 
