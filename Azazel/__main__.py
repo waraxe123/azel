@@ -43,8 +43,8 @@ async def main():
             ex = await bot.get_me()
             user_id = ex.id
             await join(bot)
-            await buat_log(bot)
-            botlog_chat_id = await get_botlog(str(user_id))
+            await buat_log(bot, "log_group")
+            botlog_chat_id = await get_botlog(str(user_id), "log_group")
             try:
             	await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py, pyro))
             except BaseException as a:
