@@ -10,7 +10,7 @@ from Azazel import BOTLOG_CHATID, aiosession, bot1, bots, app, ids, LOOP, event_
 from platform import python_version as py
 from Azazel.logging import LOGGER
 from pyrogram import __version__ as pyro
-from Azazel.core.SQL.globals import *
+from Azazel.core.SQL.botlogsql import *
 
 from Azazel.modules import ALL_MODULES
 from config import SUPPORT, CHANNEL
@@ -43,8 +43,8 @@ async def main():
             ex = await bot.get_me()
             user_id = ex.id
             await join(bot)
-            await buat_log(bot, "log_group")
-            botlog_chat_id = await get_botlog(str(user_id), "log_group")
+            await buat_log(bot)
+            botlog_chat_id = get_botlog(str(user_id))
             try:
             	await bot.send_message(botlog_chat_id, MSG_ON.format(BOT_VER, py, pyro))
             except BaseException as a:
