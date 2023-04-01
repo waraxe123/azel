@@ -6,6 +6,7 @@ from pyrogram.types import Message
 from . import *
 from Azazel.core.SQL import no_log_pms_sql
 from Azazel.core.SQL.botlogsql import *
+from Azazel.core.SQL.globals import *
 from ubotlibs.ubot.utils.tools import get_arg
 
 
