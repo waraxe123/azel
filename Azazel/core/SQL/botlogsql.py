@@ -9,7 +9,7 @@ class BotLog(BASE):
 
     def __init__(self, user_id, group_id):
         self.user_id = str(user_id)
-        self.group_id = group_id
+        self.group_id = int(group_id)
 
 BotLog.__table__.create(checkfirst=True)
 
