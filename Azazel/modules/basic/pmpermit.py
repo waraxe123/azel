@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 
 from . import *
 from Azazel import TEMP_SETTINGS
-from Azazel.core.SQL.globals import addgvar, gvarstatus
+from Azazel.core.SQL.globals import *
 from ubotlibs.ubot.utils.tools import get_arg
 
 
@@ -199,6 +199,7 @@ async def disapprovepm(client, message):
 
 @Ubot(["setlimit"], "")
 async def setpm_limit(client, message):
+    user_id = client.me.id
     if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
         return await message.edit(
             f"**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `{cmd}setvar PM_AUTO_BAN True`"
@@ -220,20 +221,20 @@ async def setpm_limit(client, message):
         return await message.edit("**Harap masukan angka untuk PM_LIMIT.**")
     biji = await message.reply("`Processing...`")
     if input_str and not input_str.isnumeric():
-        return await message.edit("**Harap masukan angka untuk PM_LIMIT.**")
-    addgvar("PM_LIMIT", input_str)
-    await biji.delete()
-    await message.edit(f"**Set PM limit to** `{input_str}`")
+        return await biji.edit("**Harap masukan angka untuk PM_LIMIT.**")
+    addgvar(str(user_id), "PM_LIMIT", input_str)
+    await biji.edit(f"**Set PM limit to** `{input_str}`")
 
 
 @Ubot(["antipm"], "")
 async def onoff_pmpermit(client, message):
+    user_id = client.me.id
     blok = get_arg(message)
     if blok == "off":
         tai = False
     elif blok == "on":
         tai = True
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         PMPERMIT = False
     else:
         PMPERMIT = True
@@ -241,10 +242,10 @@ async def onoff_pmpermit(client, message):
         if tai:
             await message.reply("**Antipm Sudah Diaktifkan**")
         else:
-            addgvar("PMPERMIT", tai)
+            addgvar(str(user_id), "PMPERMIT", tai)
             await message.edit("**Antipm Berhasil Dimatikan**")
     elif tai:
-        addgvar("PMPERMIT", tai)
+        addgvar(str(user_id), "PMPERMIT", tai)
         await message.edit("**Antipm Berhasil Diaktifkan**")
     else:
         await message.edit("**Antipm Sudah Dimatikan**")
@@ -252,8 +253,8 @@ async def onoff_pmpermit(client, message):
 
 @Ubot(["setpm"], "")
 async def setpmpermit(client, message):
-    """Set your own Unapproved message"""
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+    user_id = client.me.id
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         return await message.reply(
             "**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `.setvar PM_AUTO_BAN True`"
         )
@@ -263,21 +264,22 @@ async def setpmpermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     tai = await message.reply("`Processing...`")
-    nob = sql.gvarstatus("unapproved_msg")
+    nob = sql.gvarstatus(str(user_id), "unapproved_msg")
     message = message.reply_to_message
     if nob is not None:
-        sql.delgvar("unapproved_msg")
+        sql.delgvar(str(user_id), "unapproved_msg")
     if not message:
-        return await message.edit("**Mohon Reply Ke Pesan**")
+        return await tai.edit("**Mohon Reply Ke Pesan**")
     msg = message.text
-    sql.addgvar("unapproved_msg", msg)
-    await tai.delete()
-    await message.edit("**Pesan Berhasil Disimpan**")
+    sql.addgvar(str(user_id), "unapproved_msg", msg)
+    
+    await tai.edit("**Pesan Berhasil Disimpan**")
 
 
 @Ubot(["getpm"], "")
 async def get_pmermit(client, message):
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+    user_id = client.me.id
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         return await message.edit(
             "**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `.setvar PM_AUTO_BAN True`"
         )
@@ -287,12 +289,12 @@ async def get_pmermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     zel = await message.reply("`Processing...`")
-    nob = sql.gvarstatus("unapproved_msg")
+    nob = sql.gvarstatus(str(user_id), "unapproved_msg")
     if nob is not None:
-        await message.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{nob}")
+        await zel.edit("**Pesan PMPERMIT Yang Sekarang:**" f"\n\n{nob}")
     else:
-        await zel.delete()
-        await message.edit(
+        
+        await zel.edit(
             "**Anda Belum Menyetel Pesan Costum PMPERMIT,**\n"
             f"**Masih Menggunakan Pesan PM Default:**\n\n{DEF_UNAPPROVED_MSG}"
         )
@@ -300,7 +302,8 @@ async def get_pmermit(client, message):
 
 @Ubot(["resetpm"], "")
 async def reset_pmpermit(client, message):
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+    user_id = client.me.id
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         return await message.edit(
             f"**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `{cmd}setvar PM_AUTO_BAN True`"
         )
@@ -310,18 +313,18 @@ async def reset_pmpermit(client, message):
         await message.edit("**Running on Non-SQL mode!**")
         return
     sok = await message.reply("`Processing...`")
-    nob = sql.gvarstatus("unapproved_msg")
+    nob = sql.gvarstatus(str(user_id), "unapproved_msg")
 
     if nob is None:
-        await message.edit("**Pesan Antipm Anda Sudah Default**")
+        await sok.edit("**Pesan Antipm Anda Sudah Default**")
     else:
-        sql.delgvar("unapproved_msg")
-        await sok.delete()
-        await message.edit("**Berhasil Mengubah Pesan Custom Antipm menjadi Default**")
+        sql.delgvar(str(user_id), "unapproved_msg")
+        
+        await sok.edit("**Berhasil Mengubah Pesan Custom Antipm menjadi Default**")
 
 
 add_command_help(
-    "AntiPM",
+    "PMPermit",
     [
         [
             f"ok atau y",
