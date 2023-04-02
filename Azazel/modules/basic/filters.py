@@ -58,7 +58,7 @@ async def get_filterss(client, message):
 
 @Ubot("stfil", "") #lu gay
 async def del_filter(client, message):
-	  user_id = client.me.id
+    user_id = client.me.id
     chat_id = message.chat.id
     if len(message.command) < 2:
         return await message.reply_text(f"**Gunakan Format:**\n`stopfilter` [nama filter]")
