@@ -15,12 +15,12 @@ async def simpan_note(client, message):
     keyword = get_arg(message)
     user_id = message.from_user.id
     msg = message.reply_to_message
-    botlog = get_botlog(str(user_id))
+    botlog_group_id = get_botlog(str(user_id))
     if not msg:
         return await message.reply("Tolong balas ke pesan")
-    anu = await msg.forward(botlog.group_id)
+    anu = await msg.forward(botlog_group_id)
     msg_id = anu.id
-    await client.send_message(botlog.group_id,
+    await client.send_message(botlog_group_id,
         f"#NOTE\nKEYWORD: {keyword}"
         "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon JANGAN dihapus !!",
     )
@@ -34,10 +34,10 @@ async def panggil_notes(client, message):
     notename = get_arg(message)
     user_id = message.from_user.id
     note = get_note(str(user_id), notename)
-    botlog = get_botlog(str(user_id))
+    botlog_group_id = get_botlog(str(user_id))
     if not note:
         return await message.reply("Tidak ada catatan seperti itu.")
-    msg_o = await client.get_messages(botlog.group_id, int(note.f_mesg_id))
+    msg_o = await client.get_messages(botlog_group_id, int(note.f_mesg_id))
     await msg_o.copy(message.chat.id, reply_to_message_id=message.id)
 
 
