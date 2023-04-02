@@ -99,9 +99,8 @@ async def del_bl(client, message):
     latau = get_blchat(str(user_id))
     if chat_id in latau:
         return await message.reply("Obrolan sudah dihapus dari daftar Blacklist Gcast.")
-    sipit = rm_blchat(str(user_id), chat_id)
-    if sipit:
-        return await message.edit("Obrolan berhasil dihapus dari daftar Blacklist Gcast.")
+    rm_blchat(str(user_id), chat_id)
+    await message.edit("Obrolan dihapus dari daftar Blacklist Gcast.")
     
 
 @Ubot(["blchat"], "")
