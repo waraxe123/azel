@@ -66,7 +66,7 @@ async def truth(client, message):
 
 
 add_command_help(
-    "ToD",
+    "Dare",
     [
         [f"dare", "Coba sendiri"],
         [f"truth", "Coba sendiri"],
