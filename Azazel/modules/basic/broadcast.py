@@ -108,7 +108,7 @@ async def all_chats(client, message):
     text = "**Daftar Blacklist Gcast:**\n\n"
     j = 0
     user_id = client.me.id
-    nama_lu = await get_blchat(str(user_id))
+    nama_lu = get_blchat(str(user_id))
     for count, chat_id in enumerate(get_blchat(str(user_id)), 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
