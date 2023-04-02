@@ -75,6 +75,7 @@ async def log_tagged_messages(client, message):
         disable_web_page_preview=True,
     )
 
+"""
 @Ubot(["pmlog"], "")
 async def set_pmlog(client, message):
     cot = get_arg(message)
@@ -122,7 +123,8 @@ async def set_gruplog(client, message):
         await message.edit("**Group Log Berhasil Diaktifkan**")
     else:
         await message.edit("**Group Log Sudah Dimatikan**")
-    
+"""
+
 @Ubot("setlog", "")
 async def set_log(client, message):
     try:
@@ -143,6 +145,7 @@ add_command_help(
             "setlog",
             "Sebelum mengaktifkan fitur pmlog dan taglog anda harus mengatur setlog id_grup log anda terlebih dahulu.",
         ],
+"""
         [
             "pmlog [on atau off]",
             "Untuk mengaktifkan atau menonaktifkan log pesan pribadi yang akan di forward ke grup log.",
@@ -151,5 +154,6 @@ add_command_help(
             "taglog [on atau off]",
             "Untuk mengaktifkan atau menonaktifkan tag grup, yang akan masuk ke grup log.",
         ],
+"""
     ],
 )
