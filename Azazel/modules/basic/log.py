@@ -54,7 +54,7 @@ async def monito_p_m_s(client, message):
             pass
 
 
-@Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot & filters.via_bot)
+@Client.on_message(filters.group & filters.mentioned & filters.incoming & ~filters.bot & ~filters.via_bot)
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
@@ -99,20 +99,6 @@ async def set_pmlog(client, message):
     else:
         await message.edit("**PM Log Sudah Dimatikan**")
 
-    
-@Ubot("setlog", "")
-async def set_log(client, message):
-    try:
-        group_id = int(message.text.split(" ")[1])
-    except (ValueError, IndexError):
-        await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
-        return
-    user_id = client.me.id
-    chat_id = message.chat.id
-    set_botlog(str(user_id), group_id)
-    await message.reply_text(f"ID Grup Log telah diatur ke {group_id} untuk grup ini.")
-
-
 @Ubot(["taglog"], "")
 async def set_gruplog(client, message):
     cot = get_arg(message)
@@ -129,13 +115,25 @@ async def set_gruplog(client, message):
         if noob:
             await message.edit("**Group Log Sudah Diaktifkan**")
         else:
-            addgvar(str(user_id), "GRUPLOG", noob)
+            delgvar(str(user_id), "GRUPLOG")
             await message.edit("**Group Log Berhasil Dimatikan**")
     elif noob:
         addgvar(str(user_id), "GRUPLOG", noob)
         await message.edit("**Group Log Berhasil Diaktifkan**")
     else:
         await message.edit("**Group Log Sudah Dimatikan**")
+    
+@Ubot("setlog", "")
+async def set_log(client, message):
+    try:
+        group_id = int(message.text.split(" ")[1])
+    except (ValueError, IndexError):
+        await message.reply_text("Format yang Anda masukkan salah. Gunakan format `setlog id_grup`.")
+        return
+    user_id = client.me.id
+    chat_id = message.chat.id
+    set_botlog(str(user_id), group_id)
+    await message.reply_text(f"ID Grup Log telah diatur ke {group_id} untuk grup ini.")
 
 
 add_command_help(
