@@ -139,7 +139,7 @@ async def set_gruplog(client, message):
 
 
 add_command_help(
-    "logger",
+    "Logger",
     [
         [
             "setlog",
