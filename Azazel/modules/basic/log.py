@@ -27,7 +27,9 @@ LOG_CHATS_ = LOG_CHATS()
 async def monito_p_m_s(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog = get_botlog(str(user_id))
+    botlog_group_id = get_botlog(str(user_id))
+    if not botlog_group_id:
+        return
     if gvarstatus(str(user_id), "PMLOG") and gvarstatus(str(user_id), "PMLOG") == "false":
         return
     if not no_log_pms_sql.is_approved(message.chat.id) and message.chat.id != 777000:
@@ -42,13 +44,13 @@ async def monito_p_m_s(client, message):
                 )
                 LOG_CHATS_.COUNT = 0
             LOG_CHATS_.NEWPM = await client.send_message(
-                botlog,
+                botlog_group_id,
                 f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
                 parse_mode=enums.ParseMode.HTML,
             )
         try:
             async for pmlog in client.search_messages(message.chat.id, limit=1):
-                await pmlog.forward(botlog)
+                await pmlog.forward(botlog_group_id)
             LOG_CHATS_.COUNT += 1
         except BaseException:
             pass
@@ -58,7 +60,9 @@ async def monito_p_m_s(client, message):
 async def log_tagged_messages(client, message):
     chat_id = message.chat.id
     user_id = client.me.id
-    botlog = get_botlog(str(user_id))
+    botlog_group_id = get_botlog(str(user_id))
+    if not botlog_group_id:
+        return
     if gvarstatus(str(user_id), "GRUPLOG") and gvarstatus(str(user_id), "GRUPLOG") == "false":
         return
     if (no_log_pms_sql.is_approved(message.chat.id)):
@@ -69,7 +73,7 @@ async def log_tagged_messages(client, message):
     result += f"\n<b> • Message : </b><code>{message.text}</code>"
     await asyncio.sleep(0.5)
     await client.send_message(
-        botlog,
+        botlog_group_id,
         result,
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
