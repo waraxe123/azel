@@ -19,7 +19,7 @@ CHAT_BLACKLISTS = {}
 
 
 def get_blchat(user_id):
-    return CHAT_BLACKLISTS.get(str(chat_id), set())
+    return CHAT_BLACKLISTS.get(str(user_id), set())
 
 
 def add_blchat(user_id, chat_id):
