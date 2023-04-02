@@ -8,23 +8,6 @@ from ubotlibs.ubot.utils import get_text
 from . import *
 
 
-afk_sanity_check: dict = {}
-afkstr = """
-#AFK Hidup\n alasan {}
-"""
-onlinestr ="""
-#AFK Mati\nAfk dari {}
-"""
-async def is_afk_(f, client, message):
-    user_id = client.me.id
-    af_k_c = check_afk_status(user_id)
-    if af_k_c:
-        return bool(True)
-    else:
-        return bool(False)
-    
-is_afk = filters.create(func=is_afk_, name="is_afk_")
-
 @Ubot("afk", "")
 async def set_afk(client, message):
     if len(message.command) == 1:
