@@ -42,13 +42,13 @@ async def monito_p_m_s(client, message):
                 )
                 LOG_CHATS_.COUNT = 0
             LOG_CHATS_.NEWPM = await client.send_message(
-                botlog.group_id,
+                botlog,
                 f"💌 <b><u>MENERUSKAN PESAN BARU</u></b>\n<b> • Dari :</b> {message.from_user.mention}\n<b> • User ID :</b> <code>{message.from_user.id}</code>",
                 parse_mode=enums.ParseMode.HTML,
             )
         try:
             async for pmlog in client.search_messages(message.chat.id, limit=1):
-                await pmlog.forward(botlog.group_id)
+                await pmlog.forward(botlog)
             LOG_CHATS_.COUNT += 1
         except BaseException:
             pass
@@ -69,7 +69,7 @@ async def log_tagged_messages(client, message):
     result += f"\n<b> • Message : </b><code>{message.text}</code>"
     await asyncio.sleep(0.5)
     await client.send_message(
-        botlog.group_id,
+        botlog,
         result,
         parse_mode=enums.ParseMode.HTML,
         disable_web_page_preview=True,
