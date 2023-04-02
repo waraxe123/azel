@@ -46,7 +46,7 @@ async def main():
             await buat_log(bot)
             botlog = get_botlog(str(user_id))
             try:
-            	await bot.send_message(botlog.group_id, MSG_ON.format(BOT_VER, py, pyro))
+            	await bot.send_message(botlog, MSG_ON.format(BOT_VER, py, pyro))
             except BaseException as a:
                 LOGGER("✓").warning(f"{a}")
             LOGGER("✓").info("Startup Completed")
