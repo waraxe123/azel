@@ -2,9 +2,9 @@ from sqlalchemy import Column, String, Integer
 from . import BASE, SESSION
 
 class BotLog(BASE):
-    __tablename__ = "group_id"
+    __tablename__ = "botlog_chatid"
     user_id = Column(String(14), primary_key=True)
-    group_id = Column(Integer, nullable=False)
+    group_id = Column(BigInteger, nullable=False)
 
     def __init__(self, user_id, group_id):
         self.user_id = str(user_id)
