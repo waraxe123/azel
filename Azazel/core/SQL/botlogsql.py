@@ -15,6 +15,7 @@ BotLog.__table__.create(checkfirst=True)
 
 async def buat_log(bot):
     user = await bot.get_me()
+    user_id = user.id
     botlog = SESSION.query(BotLog).filter(BotLog.user_id == str(user_id)).first()
 
     if botlog:
