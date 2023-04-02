@@ -1,4 +1,4 @@
-"""
+
 
 import threading
 from datetime import datetime
@@ -10,7 +10,6 @@ from sqlalchemy import Boolean, Column, Integer, UnicodeText, String
 
 class AFK(BASE):
     __tablename__ = "afk"
-
     user_id = Column(String(14), primary_key=True)
     is_afk = Column(Boolean)
     time = Column(String)
@@ -38,12 +37,15 @@ def is_afk(user_id):
 """
 
 afk_sanity_check: dict = {}
+
 afkstr = """
 #AFK Hidup\n alasan {}
 """
+
 onlinestr ="""
 #AFK Mati\nAfk dari {}
 """
+
 async def is_afk_(f, client, message):
     user_id = client.me.id
     af_k_c = check_afk_status(user_id)
@@ -88,7 +90,7 @@ def rm_afk(user_id):
         SESSION.close()
         return False
 
-
+"""
 def toggle_afk(user_id, time="", reason=""):
     with INSERTION_LOCK:
         bacot = SESSION.query(AFK).get(str(user_id))
