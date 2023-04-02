@@ -32,14 +32,15 @@ async def incomingpm(client: Client, message: Message):
         from Azazel.core.SQL.pm_permit_sql import is_approved
     except BaseException:
         pass
-
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+      
+    user_id = client.me.id
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         return
     if await auto_accept(client, message) or message.from_user.is_self:
         message.continue_propagation()
     if message.chat.id != 777000:
-        PM_LIMIT = gvarstatus("PM_LIMIT") or 5
-        getmsg = gvarstatus("unapproved_msg")
+        PM_LIMIT = gvarstatus(str(user_id), "PM_LIMIT") or 5
+        getmsg = gvarstatus(str(user_id), "unapproved_msg")
         if getmsg is not None:
             UNAPPROVED_MSG = getmsg
         else:
@@ -201,7 +202,7 @@ async def disapprovepm(client, message):
 @Ubot(["setlimit"], "")
 async def setpm_limit(client, message):
     user_id = client.me.id
-    if gvarstatus("PMPERMIT") and gvarstatus("PMPERMIT") == "false":
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         return await message.edit(
             f"**Anda Harus Menyetel Var** `PM_AUTO_BAN` **Ke** `True`\n\n**Bila ingin Mengaktifkan PMPERMIT Silahkan Ketik:** `{cmd}setvar PM_AUTO_BAN True`"
         )
