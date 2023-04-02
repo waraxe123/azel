@@ -37,7 +37,7 @@ async def afk(client, message):
 
 
 @Client.on_message(filters.mentioned & ~filters.bot, group=11)
-async def afk_mentioned(client: Client, message: Message):
+async def afk_mentioned(client, message):
     global MENTIONED
     user_id = client.me.id
     botlog_group_id = get_botlog(str(user_id))
@@ -79,7 +79,7 @@ async def afk_mentioned(client: Client, message: Message):
                 "chat": message.chat.title,
                 "chat_id": cid,
                 "text": text,
-                "message_id": message.message_id,
+                "message_id": message_id,
             }
         )
         await client.send_message(
@@ -93,7 +93,7 @@ async def afk_mentioned(client: Client, message: Message):
 
 
 @Client.on_message(filters.me & filters.group, group=12)
-async def no_longer_afk(client: Client, message: Message):
+async def no_longer_afk(client, message):
     global MENTIONED
     user_id = client.me.id
     botlog_group_id = get_botlog(str(user_id))
