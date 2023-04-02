@@ -38,9 +38,10 @@ async def buat_log(bot):
 def get_botlog(user_id):
     try:
         botlog = SESSION.query(BotLog).get(str(user_id))
-        return botlog if botlog else None
+        return botlog.group_id if botlog else None
     finally:
         SESSION.close()
+
 
 def set_botlog(user_id, group_id):
     botlog = SESSION.query(BotLog).get(str(user_id))
