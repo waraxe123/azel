@@ -5,7 +5,7 @@ class BlacklistChat(BASE):
     __tablename__ = "blacklistchat"
     user_id = Column(String(14), primary_key=True)
     chat_id = Column(BigInteger, nullable=False)
-
+    chat_ids = Column(String)
     def __init__(self, user_id, chat_id):
         self.user_id = str(user_id)
         self.chat_id = int(chat_id)
