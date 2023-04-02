@@ -19,12 +19,12 @@ async def buat_log(bot):
     botlog = SESSION.query(BotLog).filter(BotLog.user_id == str(user_id)).first()
 
     if botlog:
-        botlog.group_id = int(group_id)
+        botlog = int(group_id)
     else:
         group_name = 'Azazel Project Bot Log'
         group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini\n\nCreated By @AzazelProjectBot.\nJika menemukan kendala atau ingin menanyakan sesuatu\nHubungi : @KynanSupport.'
         group = await bot.create_supergroup(group_name, group_description)
-        botlog.group_id = int(group_id)
+        botlog = group.id
         text = 'Grup Log Berhasil Dibuat,\nKetik `id` untuk mendapatkan id log grup\nKemudian ketik `setlog` ID_GROUP\n\nContoh : setlog -100749492984'
         await bot.send_message(botlog.group_id, text)
 
