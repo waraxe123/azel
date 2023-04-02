@@ -5,7 +5,7 @@ class BlacklistChat(BASE):
     __tablename__ = "blacklistchat"
     user_id = Column(String(14), primary_key=True)
     chat_id = Column(BigInteger, nullable=False)
-    chat_ids = Column(String)
+
     def __init__(self, user_id, chat_id):
         self.user_id = str(user_id)
         self.chat_id = int(chat_id)
@@ -23,7 +23,7 @@ def blacklisted_chats(user_id):
 def get_blchat(user_id):
     try:
         banci = SESSION.query(BlacklistChat).get(str(user_id))
-        return set(banci.chat_ids.split()) if banci else set()
+        return banci or set()
     finally:
         SESSION.close()
 
