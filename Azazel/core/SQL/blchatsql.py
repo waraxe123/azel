@@ -34,38 +34,16 @@ def add_blchat(user_id, chat_id):
         else:
             CHAT_BLACKLISTS.get(str(user_id), set()).add(chat_id)
 
-
-"""
-def get_blchat(user_id):
-    try:
-        return SESSION.query(BlacklistChat).filter(BlacklistChat.user_id == str(user_id)).all()
-    finally:
-        SESSION.close()
-
-
-
 def rm_blchat(user_id, chat_id):
-    sempak = get_blchat(user_id)
-    if not sempak:
+    with BLACKLIST_LOCK:
+        bacot = SESSION.query(BlacklistChat).get((str(user_id), chat_id))
+        if bacot:
+            if chat_id in CHAT_BLACKLISTS.get(str(user_id), set()):
+                CHAT_BLACKLISTS.get(str(user_id), set()).remove(chat_id)
+
+            SESSION.delete(bacot)
+            SESSION.commit()
+            return True
+
+        SESSION.close()
         return False
-    rem = SESSION.query(BlacklistChat).get((str(user_id), chat_id))
-    SESSION.delete(rem)
-    SESSION.commit()
-    return True
-
-
-def add_blchat(user_id, chat_id):
-    tai = get_blchat(user_id)
-    if not tai:
-        adder = BlacklistChat(str(user_id), chat_id)
-        SESSION.add(adder)
-        SESSION.commit()
-        return True
-    rem = SESSION.query(BlacklistChat).get((str(user_id), chat_id))
-    SESSION.delete(rem)
-    SESSION.commit()
-    adder = BlacklistChat(str(user_id), chat_id)
-    SESSION.add(adder)
-    SESSION.commit()
-    return False
-"""
