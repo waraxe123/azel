@@ -3,10 +3,10 @@ import time
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-from Ubot.core import Types, get_message_type
+from Azazel.core import Types, get_message_type
 from ubotlibs.ubot.helper.parser import escape_markdown, mention_markdown
-from Ubot.core.SQL.botlogsql import *
-from Ubot.core.SQL.afk_db import *
+from Azazel.core.SQL.botlogsql import *
+from Azazel.core.SQL.afk_db import *
 from . import *
 
 # Set priority to 11 and 12
