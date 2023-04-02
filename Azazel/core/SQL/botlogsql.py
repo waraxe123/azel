@@ -14,6 +14,8 @@ class BotLog(BASE):
 BotLog.__table__.create(checkfirst=True)
 
 
+
+
 async def buat_log(bot):
     user = await bot.get_me()
     user_id = user.id
