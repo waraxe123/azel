@@ -30,9 +30,10 @@ def add_blchat(user_id, chat_id):
         SESSION.commit()
         global CHAT_BLACKLISTS
         if CHAT_BLACKLISTS.get(str(user_id), set()) == set():
-            CHAT_BLACKLISTS[str(user_id), chat_id]
+            CHAT_BLACKLISTS[str(user_id)] = {chat_id}
         else:
             CHAT_BLACKLISTS.get(str(user_id), set()).add(chat_id)
+
 
 """
 def get_blchat(user_id):
