@@ -17,7 +17,7 @@ class Filters(BASE):
         self.chat_id = str(chat_id)
         self.keyword = keyword
         self.reply = reply
-        self.f_mesg_id = f_mesg_id
+        self.f_mesg_id = int(f_mesg_id)
 
     def __eq__(self, other):
         return bool(
