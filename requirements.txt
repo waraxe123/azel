@@ -33,6 +33,7 @@ psycopg2-binary
 ptable
 pyrogram
 pymongo
+pykeyboard
 pyromod==1.1.0
 pytube
 python-dotenv
