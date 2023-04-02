@@ -87,9 +87,8 @@ async def bl_chat(client, message):
     chat_id = int(message.text.strip().split()[1])
     if chat_id in semprul:
         return await message.reply("Obrolan sudah masuk daftar Blacklist Gcast")
-    kampret = add_blchat(str(user_id), chat_id)
-    if kampret:
-        return await message.edit("Obrolan Ditambahkan Ke Daftar Blacklist Gcast")
+    add_blchat(str(user_id), chat_id)
+    await message.edit("Obrolan Ditambahkan Ke Daftar Blacklist Gcast")
 
 @Ubot(["delbl"], "")
 async def del_bl(client, message):
