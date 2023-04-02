@@ -81,7 +81,7 @@ def toggle_afk(user_id, time="", reason=""):
         SESSION.add(bacot)
         SESSION.commit()
 
-
+"""
 def __load_afk_users():
     global AFK_USERS
     try:
@@ -92,3 +92,4 @@ def __load_afk_users():
 
 
 __load_afk_users()
+"""
