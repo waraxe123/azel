@@ -109,5 +109,6 @@ add_command_help(
         ["restart", "Untuk merestart userbot."],
         ["shutdown", "Untuk mematikan userbot."],
         ["logs", "Untuk melihat logs userbot."],
+        ["usage", "Cek Dyno Heroku Only."],
     ],
 )
