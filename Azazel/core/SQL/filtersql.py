@@ -1,21 +1,20 @@
-try:
-    from . import BASE, SESSION
-except ImportError:
-    raise AttributeError
-from sqlalchemy import Column, Numeric, String, UnicodeText
+from sqlalchemy import Column, Numeric, String, UnicodeText, BigInteger
+
+from . import BASE, SESSION
 
 
 class Filters(BASE):
+  
     __tablename__ = "filters"
     user_id = Column(String(14), primary_key=True)
-    chat_id = Column(String(14), primary_key=True)
+    chat_id = Column(BigInteger, nullable=False)
     keyword = Column(UnicodeText, primary_key=True, nullable=False)
     reply = Column(UnicodeText)
     f_mesg_id = Column(Numeric)
 
     def __init__(self, user_id, chat_id, keyword, reply, f_mesg_id):
         self.user_id = str(user_id)
-        self.chat_id = str(chat_id)
+        self.chat_id = int(chat_id)
         self.keyword = keyword
         self.reply = reply
         self.f_mesg_id = int(f_mesg_id)
@@ -39,9 +38,9 @@ def get_filter(user_id, chat_id, keyword):
         SESSION.close()
 
 
-def get_filters(user_id, chat_id):
+def get_filters(user_id):
     try:
-        return SESSION.query(Filters).filter(Filters.user_id == str(user_id), Filters.chat_id == str(chat_id)).all()
+        return SESSION.query(Filters).filter(Filters.user_id == str(user_id)).all()
     finally:
         SESSION.close()
 
@@ -54,7 +53,7 @@ def add_filter(user_id, chat_id, keyword, reply, f_mesg_id):
         SESSION.commit()
         return True
     else:
-        onyet = SESSION.query(Filters).get((str(user_id), chat_id, keyword))
+        onyet = SESSION.query(Filters).get(str(user_id), chat_id, keyword, reply, f_mesg_id)
         SESSION.delete(onyet)
         SESSION.commit()
         bangsat = Filters(str(user_id), chat_id, keyword, reply, f_mesg_id)
