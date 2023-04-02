@@ -43,7 +43,7 @@ async def main():
             ex = await bot.get_me()
             user_id = ex.id
             await join(bot)
-#            await buat_log(bot)
+            await buat_log(bot)
             botlog = get_botlog(str(user_id))
             try:
             	await bot.send_message(botlog.group_id, MSG_ON.format(BOT_VER, py, pyro))
