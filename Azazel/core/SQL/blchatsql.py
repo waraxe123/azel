@@ -46,4 +46,4 @@ def rm_blchat(user_id, chat_id):
             return True
 
         SESSION.close()
-        return False
+        return True
