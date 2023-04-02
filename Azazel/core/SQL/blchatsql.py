@@ -23,7 +23,7 @@ def blacklisted_chats(user_id):
 def get_blchat(user_id):
     try:
         banci = SESSION.query(BlacklistChat).get(str(user_id))
-        return banci or set()
+        return set(banci.chat_ids.split()) if banci else set()
     finally:
         SESSION.close()
 
