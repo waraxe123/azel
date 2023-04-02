@@ -1,7 +1,7 @@
 import threading
 
 from . import BASE, SESSION
-from sqlalchemy import Boolean, Column, Integer, UnicodeText
+from sqlalchemy import Boolean, Column, Integer, UnicodeText, String
 
 
 class AFK(BASE):
