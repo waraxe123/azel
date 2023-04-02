@@ -18,6 +18,7 @@
 - [Geez](https://t.me/GeezSupport)
 - [RAM](https://t.me/ramsupportt)
 - [OnlyMeriz](https://github.com/Onlymeriz)
+- [Tomi Setiawan](https://github.com/XtomiX)
 
 ## Credit 💖
 - Zaid Userbot
@@ -26,3 +27,4 @@
 - Geez Projects
 - TOD Ubot
 - Ayra X Userbot
+- Tomi Setiawan
