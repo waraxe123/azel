@@ -15,12 +15,12 @@ async def simpan_note(client, message):
     keyword = get_arg(message)
     user_id = message.from_user.id
     msg = message.reply_to_message
-    botlog_chat_id = get_botlog(user_id)
+    botlog = get_botlog(str(user_id))
     if not msg:
         return await message.reply("Tolong balas ke pesan")
-    anu = await msg.forward(botlog_chat_id)
+    anu = await msg.forward(botlog.group_id)
     msg_id = anu.id
-    await client.send_message(botlog_chat_id,
+    await client.send_message(botlog.group_id,
         f"#NOTE\nKEYWORD: {keyword}"
         "\n\nPesan berikut disimpan sebagai data balasan catatan untuk obrolan, mohon JANGAN dihapus !!",
     )
