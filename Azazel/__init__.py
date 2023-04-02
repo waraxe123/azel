@@ -11,7 +11,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from gpytranslate import Translator
 from pyrogram import Client, filters
 from pytgcalls import GroupCallFactory
-
+from .logging import *
 from config import *
 cmds = None
 CMD_HELP = {}
