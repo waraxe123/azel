@@ -18,11 +18,6 @@
             "description": "Isi Woy",
             "required": true
         },
-        "MONGO_URL": {
-            "description": "Fill there an mongo database from mongodb.com",
-            "required": true,
-            "value": ""
-        },
         "OPENAI_API": {
             "description": "Jika ingin menggunakan openai, isi openai-api-key",
             "required": false,
