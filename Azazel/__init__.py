@@ -50,7 +50,7 @@ asyncio.set_event_loop(event_loop)
 # event_loop = event_policy.get_event_loop()
 # asyncio.set_event_loop(event_loop)
 
-
+"""
 app = Client(
     name="app",
     api_id=API_ID,
@@ -60,7 +60,34 @@ app = Client(
     plugins=dict(root="Azazel/modules/bot"),
     in_memory=True,
 )
+"""
 
+class Bot(Client):
+    def __init__(self):
+        super().__init__(
+            name="ubot",
+            api_hash=API_HASH,
+            api_id=API_ID,
+            bot_token=BOT_TOKEN,
+            sleep_threshold=5,
+            plugins=dict(root="Ubot/modules/bot"),
+            workers=BOT_WORKERS,
+            in_memory=True,
+        )
+        self.LOGGER = LOGGER
+
+    async def start(self):
+        await super().start()
+        usr_bot_me = self.me
+        self.LOGGER(__name__).info(
+            f"@{usr_bot_me.username} based on Pyrogram v{__version__} "
+        )
+
+    async def stop(self, *args):
+        await super().stop()
+        self.LOGGER(__name__).info("SessionMakerBot stopped. Bye.")
+
+app = Bot()
 
 bot1 = (
     Client(
