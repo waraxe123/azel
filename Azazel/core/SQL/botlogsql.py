@@ -19,7 +19,7 @@ async def buat_log(bot):
     botlog = SESSION.query(BotLog).filter(BotLog.user_id == str(user_id)).first()
 
     if botlog:
-        botlog.group_id = int(group_id)
+        group_id = botlog.group_id
     else:
         group_name = 'Azazel Project Bot Log'
         group_description = 'Jangan Hapus Atau Keluar Dari Grup Ini\n\nCreated By @AzazelProjectBot.\nJika menemukan kendala atau ingin menanyakan sesuatu\nHubungi : @KynanSupport.'
@@ -33,7 +33,8 @@ async def buat_log(bot):
         SESSION.commit()
 
     SESSION.close()
-    return botlog.group_id
+    return group_id
+
 
 def get_botlog(user_id):
     try:
