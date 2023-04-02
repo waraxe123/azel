@@ -20,12 +20,11 @@ from dotenv import load_dotenv
 
 
 MSG_ON = """
-**New Ubot Actived ✅**
+**Azazel Project Actived ✅**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
 ◉ **Versi** : `{}`
 ◉ **Phython** : `{}`
 ◉ **Pyrogram** : `{}`
-
 **Ketik** `alive`
 **untuk Mengecheck Bot**
 ╼┅━━━━━━━━━━╍━━━━━━━━━━┅╾
