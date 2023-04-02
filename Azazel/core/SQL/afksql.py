@@ -1,3 +1,5 @@
+"""
+
 import threading
 from datetime import datetime
 from pyrogram import filters, Client
@@ -86,7 +88,7 @@ def rm_afk(user_id):
         SESSION.close()
         return False
 
-"""
+
 def toggle_afk(user_id, time="", reason=""):
     with INSERTION_LOCK:
         bacot = SESSION.query(AFK).get(str(user_id))
