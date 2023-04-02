@@ -160,15 +160,15 @@ async def nimek(client, message):
     
     
 @Ubot(["Bugil"], "")
-async def bugil(client, message):
+async def bgst(client, message):
     if message.chat.id in BL_UBOT:
         return await message.reply("**Tidak bisa di gunakan di Group Support**")
-    kazu = await message.edit("🔎 `Search PP Bugil...`")
+    nyet = await message.edit("🔎 `Search PP Bugil...`")
     await message.reply_photo(
         choice(
             [
-                lol.photo.file_id
-                async for lol in client.search_messages(
+                til.photo.file_id
+                async for til in client.search_messages(
                     "durovbgst", filter=enums.MessagesFilter.PHOTO
                 )
             ]
@@ -177,7 +177,7 @@ async def bugil(client, message):
         caption=f"Upload by {client.me.mention}",
     )
 
-    await kazu.delete()
+    await nyet.delete()
     
 @Ubot(["pap"], "")
 async def bugil(client, message):
