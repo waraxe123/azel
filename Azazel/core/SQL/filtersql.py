@@ -1,3 +1,5 @@
+"""
+
 from sqlalchemy import Column, Numeric, String, UnicodeText, BigInteger
 
 from . import BASE, SESSION
@@ -70,3 +72,4 @@ def remove_filter(user_id, chat_id, keyword):
         SESSION.delete(tai)
         SESSION.commit()
         return True
+"""
