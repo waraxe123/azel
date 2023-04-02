@@ -48,14 +48,15 @@ def get_botlog(user_id):
         SESSION.close()
 
 def set_botlog(user_id, group_id):
-    botlog = SESSION.query(BotLog).get(str(user_id), int(group_id))
+    botlog = SESSION.query(BotLog).get(str(user_id))
     if botlog:
-        botlog = int(group_id)
+        botlog.group_id = int(group_id)
     else:
         botlog = BotLog(str(user_id), int(group_id))
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
+
 
 
 async def get_log_grup():
