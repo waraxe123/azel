@@ -52,11 +52,10 @@ def set_botlog(user_id, group_id):
     if botlog:
         botlog.group_id = int(group_id)
     else:
-        botlog = BotLog(str(user_id), int(group_id))
+        botlog = BotLog(user_id=user_id, group_id=group_id)
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
-
 
 
 async def get_log_grup():
