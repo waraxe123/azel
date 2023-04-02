@@ -43,14 +43,14 @@ async def buat_log(bot):
 def get_botlog(user_id):
     try:
         botlog = SESSION.query(BotLog).get(str(user_id))
-        return botlog.group_id if botlog else None
+        return botlog if botlog else None
     finally:
         SESSION.close()
 
 def set_botlog(user_id, group_id):
-    botlog = SESSION.query(BotLog).get(str(user_id))
+    botlog = SESSION.query(BotLog).get(str(user_id), int(group_id))
     if botlog:
-        botlog.group_id = int(group_id)
+        botlog = int(group_id)
     else:
         botlog = BotLog(str(user_id), int(group_id))
         SESSION.add(botlog)
