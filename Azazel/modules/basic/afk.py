@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from Azazel.core import Types, get_message_type
 from ubotlibs.ubot.helper.parser import escape_markdown, mention_markdown
 from Azazel.core.SQL.botlogsql import *
-from Azazel.core.SQL.afk_db import *
+from Azazel.core.SQL.afksql import *
 from . import *
 
 # Set priority to 11 and 12
