@@ -19,11 +19,18 @@ def blacklisted_chats(user_id):
     finally:
         SESSION.close()
 
-        
+"""
 def get_blchat(user_id):
     try:
         banci = SESSION.query(BlacklistChat).get(str(user_id))
         return banci or set()
+    finally:
+        SESSION.close()
+"""
+
+def get_blchat(user_id):
+    try:
+        return SESSION.query(BlacklistChat).filter(BlacklistChat.user_id == str(user_id)).all()
     finally:
         SESSION.close()
 
