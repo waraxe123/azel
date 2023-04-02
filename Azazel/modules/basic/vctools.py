@@ -137,7 +137,7 @@ async def end_vc_(client: Client, message: Message):
 
 
 add_command_help(
-    "VoiceCall",
+    "Voicechat",
     [
         [f"startvc", "Start voice chat group."],
         [f"stopvc", "End voice chat group."],
