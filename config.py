@@ -32,7 +32,6 @@ DB_URL = getenv("DATABASE_URL", "postgres://mcclbjwx:CqMrbec47cqL5KbaZOUDlVQWOsc
 BOTLOG_CHATID = int(getenv("BOTLOG_CHATID") or 0)
 BLACKLIST_GCAST = {int(x) for x in getenv("BLACKLIST_GCAST", "").split()}
 GIT_TOKEN = getenv("GIT_TOKEN") #personal access token
-REPO_URL = getenv("REPO_URL", "")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY", "73ba119e-4425-4282-ab95-40cc3edc2c52")
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME", "zezalin")
 BRANCH = getenv("BRANCH", "azazel") #don't change
