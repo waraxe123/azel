@@ -43,7 +43,7 @@ def rm_blchat(user_id, chat_id):
 
             SESSION.delete(bacot)
             SESSION.commit()
-            return True
+            return False
 
         SESSION.close()
         return True
