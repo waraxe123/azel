@@ -85,7 +85,7 @@ async def bl_chat(client, message):
     user_id = client.me.id
     semprul = get_blchat(str(user_id))
     chat_id = int(message.text.strip().split()[1])
-    if chat_id in semprul:
+    if chat_id not in semprul:
         return await message.reply("Obrolan sudah masuk daftar Blacklist Gcast")
     add_blchat(str(user_id), chat_id)
     await message.edit("Obrolan Ditambahkan Ke Daftar Blacklist Gcast")
