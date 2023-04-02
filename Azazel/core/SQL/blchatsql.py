@@ -37,7 +37,7 @@ def rm_blchat(user_id, chat_id):
     return True
 
 
-def add_blacklist(user_id, chat_id):
+def add_blchat(user_id, chat_id):
     tai = get_blchat(user_id)
     if not tai:
         adder = BlacklistChat(str(user_id), chat_id)
