@@ -1,4 +1,4 @@
-
+"""
 
 import re
 from pyrogram import filters, Client
@@ -125,3 +125,4 @@ add_command_help(
         [f"filters", "Melihat list filter."],
     ],
 )
+"""
