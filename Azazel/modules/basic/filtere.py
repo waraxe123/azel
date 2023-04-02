@@ -39,7 +39,7 @@ async def save_filters(client, message):
         if _type == "text"
         else message.reply_to_message.sticker.file_id,
     }
-    add_filter(str(user_id), str(chat_id), keyword, reply)
+    add_filter(str(user_id), int(chat_id), keyword, reply)
     await message.reply_text(f"**Filter {keyword} disimpan!.**")
 
 
@@ -47,7 +47,7 @@ async def save_filters(client, message):
 async def get_filterss(client, message):
     user_id = client.me.id
     chat_id = message.chat.id
-    sempak = get_filters(str(user_id), str(chat_id))
+    sempak = get_filters(str(user_id))
     if not sempak:
         return await message.reply_text("**Tidak ada filter tersimpan di group ini.**")
     sempak.sort()
@@ -66,7 +66,7 @@ async def del_filter(client, message):
     if not keyword:
         return await message.reply_text(f"**Gunakan format:**\n`stopfilter` [nama filter]")
     
-    bajingan = remove_filter(str(user_id), str(chat_id), keyword)
+    bajingan = remove_filter(str(user_id), int(chat_id), keyword)
     if bajingan:
         await message.reply_text(f"*Filter {keyword} berhasil dihapus.**")
     else:
@@ -79,7 +79,7 @@ async def filters_re(client, message):
         return
     user_id = client.me.id
     chat_id = message.chat.id
-    babi = get_filters(str(user_id), str(chat_id))
+    babi = get_filters(str(user_id))
     for word in babi:
         pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
