@@ -1,6 +1,7 @@
-# Kata Gua Lu Anjing
-
-from . import BASE, SESSION
+try:
+    from . import BASE, SESSION
+except ImportError:
+    raise AttributeError
 from sqlalchemy import Column, Numeric, String, UnicodeText
 
 
