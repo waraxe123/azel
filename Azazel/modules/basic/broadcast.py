@@ -85,10 +85,11 @@ async def bl_chat(client, message):
     user_id = client.me.id
     semprul = get_blchat(str(user_id))
     chat_id = int(message.text.strip().split()[1])
-    if chat_id not in semprul:
+    if chat_id in semprul:
         return await message.reply("Obrolan sudah masuk daftar Blacklist Gcast")
-    add_blchat(str(user_id), chat_id)
-    await message.edit("Obrolan Ditambahkan Ke Daftar Blacklist Gcast")
+    kampret = add_blchat(str(user_id), chat_id)
+    if kampret:
+        return await message.edit("Obrolan Ditambahkan Ke Daftar Blacklist Gcast")
 
 @Ubot(["delbl"], "")
 async def del_bl(client, message):
@@ -97,10 +98,11 @@ async def del_bl(client, message):
     user_id = client.me.id
     chat_id = int(message.text.strip().split()[1])
     latau = get_blchat(str(user_id))
-    if chat_id not in latau:
-        return await message.reply("Obrolan berhasil dihapus dari daftar Blacklist.")
-    rm_blchat(str(user_id), chat_id)
-    await message.edit("Obrolan berhasil dihapus dari daftar Blacklist Gcast.")
+    if chat_id in latau:
+        return await message.reply("Obrolan sudah dihapus dari daftar Blacklist Gcast.")
+    sipit = rm_blchat(str(user_id), chat_id)
+    if sipit:
+        return await message.edit("Obrolan berhasil dihapus dari daftar Blacklist Gcast.")
     
 
 @Ubot(["blchat"], "")
@@ -109,7 +111,7 @@ async def all_chats(client, message):
     j = 0
     user_id = client.me.id
     nama_lu = get_blchat(str(user_id))
-    for count, chat_id in enumerate(get_blchat(str(user_id)), 1):
+    for count, chat_id in enumerate(nama_lu, 1):
         try:
             title = (await client.me.id.get_chat(chat_id)).title
         except Exception:
