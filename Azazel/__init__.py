@@ -70,7 +70,7 @@ class Bot(Client):
             api_id=API_ID,
             bot_token=BOT_TOKEN,
             sleep_threshold=5,
-            plugins=dict(root="Ubot/modules/bot"),
+            plugins=dict(root="Azazel/modules/bot"),
             workers=BOT_WORKERS,
             in_memory=True,
         )
