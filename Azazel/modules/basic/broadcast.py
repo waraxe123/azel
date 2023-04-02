@@ -29,9 +29,9 @@ else:
 @Ubot(["Gcast"], "")
 async def gcast_cmd(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        jamban = await message.reply_text("`Memulai Broadcast...`")
+        jamban = await message.reply("`Memulai Broadcast...`")
     else:
-        return await message.edit_text("**Balas ke pesan/berikan sebuah pesan**")
+        return await message.edit("**Balas ke pesan/berikan sebuah pesan**")
     done = 0
     error = 0
     async for dialog in client.get_dialogs():
@@ -52,8 +52,8 @@ async def gcast_cmd(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-                    await jamban.delete()
-    await message.edit_text(
+                    
+    await jamban.edit(
         f"**Berhasil mengirim ke** `{done}` **Groups chat, Gagal mengirim ke** `{error}` **Groups**"
     )
 
@@ -61,9 +61,9 @@ async def gcast_cmd(client: Client, message: Message):
 @Ubot(["gucast"], "")
 async def gucast(client: Client, message: Message):
     if message.reply_to_message or get_arg(message):
-        spk = await message.reply_text("`Started Global Broadcast...`")
+        spk = await message.reply("`Started Global Broadcast...`")
     else:
-        return await message.edit_text("**Berikan sebuah pesan atau balas ke pesan**")
+        return await spk.edit("**Berikan sebuah pesan atau balas ke pesan**")
     done = 0
     error = 0
     async for dialog in client.get_dialogs():
@@ -84,8 +84,8 @@ async def gucast(client: Client, message: Message):
                 except Exception:
                     error += 1
                     await asyncio.sleep(0.3)
-                    await spk.delete()
-    await message.edit_text(
+                    
+    await spk.edit(
         f"**Successfully Sent Message To** `{done}` **chat, Failed to Send Message To** `{error}` **chat**"
     )
 
