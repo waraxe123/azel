@@ -5,7 +5,7 @@ from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton as Ikb
 from . import *
 from Azazel.core.SQL.filtersql  import *
-from Azazel.core.filter import *
+from Azazel.core import *
 
 
 @Ubot("adfil", "")
