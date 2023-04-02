@@ -10,8 +10,8 @@ from Azazel.core import *
 
 @Ubot("adfil", "")
 async def save_filters(client, message):
-	  chat_id = message.chat.id
     user_id = client.me.id
+    chat_id = message.chat.id
     if len(message.command) < 2 or not message.reply_to_message:
         return await message.reply_text(
             f"**Gunakan Format:**\nbalas kepesan atau sticker `savefilter` [nama filter] untuk save filter."
