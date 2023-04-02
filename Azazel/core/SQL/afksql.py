@@ -1,5 +1,7 @@
 import threading
-
+from datetime import datetime
+from pyrogram import filters, Client
+from pyrogram.types import Message
 from . import BASE, SESSION
 from sqlalchemy import Boolean, Column, Integer, UnicodeText, String
 
@@ -28,10 +30,27 @@ INSERTION_LOCK = threading.RLock()
 
 AFK_USERS = {}
 
-
+"""
 def is_afk(user_id):
     return user_id in AFK_USERS
+"""
 
+afk_sanity_check: dict = {}
+afkstr = """
+#AFK Hidup\n alasan {}
+"""
+onlinestr ="""
+#AFK Mati\nAfk dari {}
+"""
+async def is_afk_(f, client, message):
+    user_id = client.me.id
+    af_k_c = check_afk_status(user_id)
+    if af_k_c:
+        return bool(True)
+    else:
+        return bool(False)
+    
+is_afk = filters.create(func=is_afk_, name="is_afk_")
 
 def check_afk_status(user_id):
     try:
@@ -67,7 +86,7 @@ def rm_afk(user_id):
         SESSION.close()
         return False
 
-
+"""
 def toggle_afk(user_id, time="", reason=""):
     with INSERTION_LOCK:
         bacot = SESSION.query(AFK).get(str(user_id))
@@ -81,7 +100,7 @@ def toggle_afk(user_id, time="", reason=""):
         SESSION.add(bacot)
         SESSION.commit()
 
-"""
+
 def __load_afk_users():
     global AFK_USERS
     try:
