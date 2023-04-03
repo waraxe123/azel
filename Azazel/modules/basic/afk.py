@@ -108,7 +108,6 @@ async def no_longer_afk(client, message):
             text += "- [{}](https://t.me/c/{}/{}) ({}): {}\n".format(
                 escape_markdown(x["user"]),
                 x["chat_id"],
-                x["message_id"],
                 x["chat"],
                 msg_text,
             )
