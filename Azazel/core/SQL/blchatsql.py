@@ -56,7 +56,8 @@ def rm_blchat(user_id, chat_id):
         if bacot:
             if chat_id in CHAT_BLACKLISTS.get(str(user_id), set()):
                 CHAT_BLACKLISTS.get(str(user_id), set()).remove(chat_id)
-
+                
+            BLACKLIST_CHAT.remove(chat_id)
             SESSION.delete(bacot)
             SESSION.commit()
             SESSION.close()
