@@ -105,7 +105,7 @@ async def no_longer_afk(client, message):
             msg_text = x["text"]
             if len(msg_text) >= 11:
                 msg_text = "{}...".format(x["text"])
-            text += "- [{}](https://t.me/c/{}/{}) ({}): {}\n".format(
+            text += "- [{}](https://t.me/c/{}/{}): {}\n".format(
                 escape_markdown(x["user"]),
                 x["chat_id"],
                 x["chat"],
