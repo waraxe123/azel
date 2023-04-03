@@ -99,7 +99,7 @@ async def del_bl(client, message):
     latau = get_blchat(str(user_id))
     if chat_id not in latau:
         return await message.reply("Obrolan sudah dihapus dari daftar Blacklist Gcast.")
-    rm_blchat(str(user_id), int(chat_id))
+    rm_blchat(str(user_id), chat_id)
     await message.edit("Obrolan dihapus dari daftar Blacklist Gcast.")
     
 
