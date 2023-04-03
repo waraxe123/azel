@@ -16,6 +16,20 @@ BlacklistChat.__table__.create(checkfirst=True)
 BLACKLIST_LOCK = threading.RLock()
 BLACKLIST_CHAT = set()
 CHAT_BLACKLISTS = {}
+load_blacklist_chat()
+
+
+def load_blacklist_chat():
+    with BLACKLIST_LOCK:
+        monyet = SESSION.query(BlacklistChat).all()
+        for chat in monyet:
+            user_id = chat.user_id
+            chat_id = chat.chat_id
+            if CHAT_BLACKLISTS.get(user_id) is None:
+                CHAT_BLACKLISTS[user_id] = {chat_id}
+            else:
+                CHAT_BLACKLISTS[user_id].add(chat_id)
+            BLACKLIST_CHAT.add(chat_id)
 
 
 def get_blchat(user_id):
@@ -33,6 +47,7 @@ def add_blchat(user_id, chat_id):
             CHAT_BLACKLISTS[str(user_id)] = {chat_id}
         else:
             CHAT_BLACKLISTS.get(str(user_id), set()).add(chat_id)
+        BLACKLIST_CHAT.add(chat_id)
         SESSION.close()
         return True
 
@@ -47,6 +62,7 @@ def rm_blchat(user_id, chat_id):
             SESSION.commit()
             SESSION.close()
             return True
+
 
 #        SESSION.close()
 #        return True
