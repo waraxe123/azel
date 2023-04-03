@@ -149,15 +149,6 @@ add_command_help(
             "setlog",
             "Sebelum mengaktifkan fitur pmlog dan taglog anda harus mengatur setlog id_grup log anda terlebih dahulu.",
         ],
-"""
-        [
-            "pmlog [on atau off]",
-            "Untuk mengaktifkan atau menonaktifkan log pesan pribadi yang akan di forward ke grup log.",
-        ],
-        [
-            "taglog [on atau off]",
-            "Untuk mengaktifkan atau menonaktifkan tag grup, yang akan masuk ke grup log.",
-        ],
-"""
+
     ],
 )
