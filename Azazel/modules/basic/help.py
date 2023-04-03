@@ -67,7 +67,7 @@ async def module_help(client: Client, message: Message):
             this_command = f"**Bantuan {str(help_arg).upper()}**\n\n"
             for x in commands:
                 this_command += f"๏ **Keterangan:** `{str(commands[x])}`\n\n"
-            this_command += ""
+            this_command += "@KynanSupport"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
