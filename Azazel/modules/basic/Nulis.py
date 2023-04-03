@@ -10,7 +10,7 @@ async def handwrite(client, message):
     else:
         monyet = message.text.split(None, 1)[1]
     babi = await message.reply("`Processing...`")
-    ajg = requests.get(f"https://api.sdbots.tk/write?text={naya}").url
+    ajg = requests.get(f"https://api.sdbots.tk/write?text={monyet}").url
     await message.reply_photo(
         photo=ajg,
         caption=f"**Ditulis Oleh :** {client.me.mention}")
