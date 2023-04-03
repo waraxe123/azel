@@ -35,6 +35,12 @@ async def afk(client, message):
         )
     await message.stop_propagation()
 
+File "/usr/local/lib/python3.10/dist-packages/pyrogram/dispatcher.py", line 240, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/root/Azazel-Project/Azazel/modules/basic/afk.py", line 82, in afk_mentioned
+    "message_id": message_id,
+NameError: name 'message_id' is not defined
+
 
 @Client.on_message(filters.mentioned & ~filters.bot, group=11)
 async def afk_mentioned(client, message):
@@ -79,7 +85,7 @@ async def afk_mentioned(client, message):
                 "chat": message.chat.title,
                 "chat_id": cid,
                 "text": text,
-                "message_id": message_id,
+                "message_id": message.message_id,
             }
         )
         await client.send_message(
