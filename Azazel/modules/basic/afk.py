@@ -79,7 +79,6 @@ async def afk_mentioned(client, message):
                 "chat": message.chat.title,
                 "chat_id": cid,
                 "text": text,
-                "message_id": message.message_id,
             }
         )
         await client.send_message(
