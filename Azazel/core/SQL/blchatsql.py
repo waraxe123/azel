@@ -52,18 +52,18 @@ def add_blchat(user_id, chat_id):
 
 def rm_blchat(user_id, chat_id):
     with BLACKLIST_LOCK:
-        bacot = SESSION.query(BlacklistChat).get(str(user_id), str(chat_id))
+        bacot = SESSION.query(BlacklistChat).get(str(user_id), int(chat_id))
         if bacot:
             if chat_id in CHAT_BLACKLISTS.get(str(user_id), set()):
                 CHAT_BLACKLISTS.get(str(user_id), set()).remove(chat_id)
                 
             BLACKLIST_CHAT.remove(chat_id)
             SESSION.delete(bacot)
+            SESSION.commit()
             return True
 
 
         SESSION.close()
         return True
-        
         
 load_blacklist_chat()
