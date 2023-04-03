@@ -59,11 +59,11 @@ def rm_blchat(user_id, chat_id):
                 
             BLACKLIST_CHAT.remove(chat_id)
             SESSION.delete(bacot)
-            SESSION.commit()
-            SESSION.close()
             return True
 
 
-#        SESSION.close()
-#        return True
+        SESSION.close()
+        return True
+        
+        
 load_blacklist_chat()
