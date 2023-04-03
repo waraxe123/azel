@@ -28,12 +28,13 @@ def add_blchat(user_id, chat_id):
 
         SESSION.merge(kambing)
         SESSION.commit()
-        SESSION.close()
         global CHAT_BLACKLISTS
         if CHAT_BLACKLISTS.get(str(user_id), set()) == set():
             CHAT_BLACKLISTS[str(user_id)] = {chat_id}
         else:
             CHAT_BLACKLISTS.get(str(user_id), set()).add(chat_id)
+        SESSION.close()
+        return True
 
 def rm_blchat(user_id, chat_id):
     with BLACKLIST_LOCK:
@@ -44,8 +45,7 @@ def rm_blchat(user_id, chat_id):
 
             SESSION.delete(bacot)
             SESSION.commit()
-            SESSION.close()
             return False
 
-        
-#        return True
+        SESSION.close()
+        return True
