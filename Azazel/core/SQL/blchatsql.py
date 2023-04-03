@@ -16,7 +16,6 @@ BlacklistChat.__table__.create(checkfirst=True)
 BLACKLIST_LOCK = threading.RLock()
 BLACKLIST_CHAT = set()
 CHAT_BLACKLISTS = {}
-load_blacklist_chat()
 
 
 def load_blacklist_chat():
@@ -66,3 +65,4 @@ def rm_blchat(user_id, chat_id):
 
 #        SESSION.close()
 #        return True
+load_blacklist_chat()
