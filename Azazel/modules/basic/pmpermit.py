@@ -8,6 +8,7 @@ from Azazel import TEMP_SETTINGS
 from Azazel.core.SQL.botlogsql import *
 from Azazel.core.SQL.globals import *
 from ubotlibs.ubot.utils.tools import get_arg
+from .help import edit_or_reply
 
 PMPERMIT = False
 
@@ -229,23 +230,29 @@ async def setpm_limit(client, message):
     await biji.edit(f"**Set PM limit to** `{input_str}`")
 
 
-@Ubot(["antipm"], "")
-async def onoff_pmpermit(client, message):
+@Ubot(["pmpermit", "antipm"], "")
+async def onoff_pmpermit(client: Client, message: Message):
+    input_str = get_arg(message)
     user_id = client.me.id
-    blok = get_arg(message)
-    if not blok:
-        await message.reply("**Gunakan format**:\n `antipm` on atau off")
-        return
-    if blok == "off":
-        tai = False
-        addgvar(str(user_id), "PMPERMIT", tai)
-        await message.edit("**Antipm Berhasil Dimatikan**")
-    elif blok == "on":
-        bau = True
-        addgvar(str(user_id), "PMPERMIT", bau)
-        await message.edit("**Antipm Berhasil Diaktifkan**")
+    if input_str == "off":
+        h_type = False
+    elif input_str == "on":
+        h_type = True
+    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
+        PMPERMIT = False
     else:
-        await message.edit("**Gunakan format**:\n `antipm` on atau off")
+        PMPERMIT = False
+    if PMPERMIT:
+        if h_type:
+            await edit_or_reply(message, "**PMPERMIT Sudah Diaktifkan**")
+        else:
+            addgvar(str(user_id), "PMPERMIT", h_type)
+            await edit_or_reply(message, "**PMPERMIT Berhasil Dimatikan**")
+    elif h_type:
+        addgvar(str(user_id), "PMPERMIT", h_type)
+        await edit_or_reply(message, "**PMPERMIT Berhasil Diaktifkan**")
+    else:
+        await edit_or_reply(message, "**PMPERMIT Sudah Dimatikan**")
 
 
 
