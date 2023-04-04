@@ -234,29 +234,31 @@ async def setpm_limit(client, message):
 async def onoff_pmpermit(client: Client, message: Message):
     input_str = get_arg(message)
     user_id = client.me.id
+    
     if not input_str:
-        await message.reply("**Gunakan format**:\n `antipm` on atau off")
+        await edit_or_reply(message, "**Gunakan format**: `antipm` on atau off")
         return
+    
     if input_str == "off":
         h_type = False
     elif input_str == "on":
         h_type = True
+        
     if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         PMPERMIT = False
     else:
         PMPERMIT = True
-    if PMPERMIT:
-        if h_type:
-            await edit_or_reply(message, "**PMPERMIT Sudah Diaktifkan**")
-        else:
-            delgvar(str(user_id), "PMPERMIT")
-            await edit_or_reply(message, "**PMPERMIT Berhasil Dimatikan**")
-    elif h_type:
+        
+    if PMPERMIT and h_type:
+        await edit_or_reply(message, "**PMPERMIT Sudah Diaktifkan**")
+    elif PMPERMIT and not h_type:
+        delgvar(str(user_id), "PMPERMIT")
+        await edit_or_reply(message, "**PMPERMIT Berhasil Dimatikan**")
+    elif not PMPERMIT and h_type:
         addgvar(str(user_id), "PMPERMIT", h_type)
         await edit_or_reply(message, "**PMPERMIT Berhasil Diaktifkan**")
     else:
         await edit_or_reply(message, "**PMPERMIT Sudah Dimatikan**")
-
 
 
 @Ubot(["setpm"], "")
