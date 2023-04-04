@@ -233,17 +233,14 @@ async def setpm_limit(client, message):
 async def onoff_pmpermit(client, message):
     user_id = client.me.id
     blok = get_arg(message)
-    tai = False
     if not blok:
         await message.reply("**Gunakan format**:\n `antipm` on atau off")
         return
     if blok == "off":
-        tai = False
-        addgvar(str(user_id), "PMPERMIT", tai)
+        addgvar(str(user_id), "PMPERMIT", False)
         await message.edit("**Antipm Berhasil Dimatikan**")
     elif blok == "on":
-        tai = True
-        addgvar(str(user_id), "PMPERMIT", tai)
+        addgvar(str(user_id), "PMPERMIT", True)
         await message.edit("**Antipm Berhasil Diaktifkan**")
     else:
         await message.edit("**Gunakan format**:\n `antipm` on atau off")
