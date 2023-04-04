@@ -37,6 +37,7 @@ def delgvar(user_id, variable):
         .delete(synchronize_session="fetch")
     )
     if rem:
+        SESSION.delete(rem)
         SESSION.commit()
 
 
