@@ -234,6 +234,9 @@ async def setpm_limit(client, message):
 async def onoff_pmpermit(client: Client, message: Message):
     input_str = get_arg(message)
     user_id = client.me.id
+    if not input_str:
+        await message.reply("**Gunakan format**:\n `antipm` on atau off")
+        return
     if input_str == "off":
         h_type = False
     elif input_str == "on":
