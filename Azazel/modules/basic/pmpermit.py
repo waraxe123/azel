@@ -244,7 +244,7 @@ async def onoff_pmpermit(client: Client, message: Message):
     if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
         PMPERMIT = False
     else:
-        PMPERMIT = False
+        PMPERMIT = True
     if PMPERMIT:
         if h_type:
             await edit_or_reply(message, "**PMPERMIT Sudah Diaktifkan**")
