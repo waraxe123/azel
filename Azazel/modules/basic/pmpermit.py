@@ -9,6 +9,7 @@ from Azazel.core.SQL.botlogsql import *
 from Azazel.core.SQL.globals import *
 from ubotlibs.ubot.utils.tools import get_arg
 
+PMPERMIT = False
 
 DEF_UNAPPROVED_MSG = (
 "╔═════════════════════╗\n"
@@ -237,19 +238,12 @@ async def onoff_pmpermit(client, message):
         tai = False
     elif blok == "on":
         tai = True
-    if gvarstatus(str(user_id), "PMPERMIT") and gvarstatus(str(user_id), "PMPERMIT") == "false":
-        PMPERMIT = False
-    else:
-        PMPERMIT = True
-    if PMPERMIT:
-        if tai:
-            await message.reply("**Antipm Sudah Diaktifkan**")
-        else:
-            delgvar(str(user_id), "PMPERMIT")
-            await message.edit("**Antipm Berhasil Dimatikan**")
     elif tai:
         addgvar(str(user_id), "PMPERMIT", tai)
         await message.edit("**Antipm Berhasil Diaktifkan**")
+    elif tai:
+        delgvar(str(user_id), "PMPERMIT")
+        await message.edit("**Antipm Berhasil Dimatikan**")
     else:
         await message.edit("**Antipm Sudah Dimatikan**")
 
