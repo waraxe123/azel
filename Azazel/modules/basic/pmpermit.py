@@ -232,6 +232,7 @@ async def setpm_limit(client, message):
 async def onoff_pmpermit(client, message):
     user_id = client.me.id
     blok = get_arg(message)
+    tai = False
     if blok == "off":
         tai = False
     elif blok == "on":
@@ -251,6 +252,7 @@ async def onoff_pmpermit(client, message):
         await message.edit("**Antipm Berhasil Diaktifkan**")
     else:
         await message.edit("**Antipm Sudah Dimatikan**")
+
 
 
 @Ubot(["setpm"], "")
