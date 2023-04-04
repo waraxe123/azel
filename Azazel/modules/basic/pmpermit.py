@@ -245,7 +245,7 @@ async def onoff_pmpermit(client, message):
         if tai:
             await message.reply("**Antipm Sudah Diaktifkan**")
         else:
-            addgvar(str(user_id), "PMPERMIT", tai)
+            delgvar(str(user_id), "PMPERMIT")
             await message.edit("**Antipm Berhasil Dimatikan**")
     elif tai:
         addgvar(str(user_id), "PMPERMIT", tai)
