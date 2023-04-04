@@ -23,9 +23,9 @@ Globals.__table__.create(checkfirst=True)
 
 
 def addgvar(user_id, variable, value):
-    if SESSION.query(Globals).filter(Globals.user_id == str(user_id), Globals.variable == str(variable)).one_or_none():
+    if SESSION.query(Globals).filter(Globals.user_id == str(user_id)).one_or_none():
         delgvar(user_id, variable)
-    adder = Globals(user_id=str(user_id), variable=str(variable), value=value)
+    adder = Globals(user_id=str(user_id), variable=variable, value=value)
     SESSION.add(adder)
     SESSION.commit()
 
@@ -33,7 +33,7 @@ def addgvar(user_id, variable, value):
 def delgvar(user_id, variable):
     rem = (
         SESSION.query(Globals)
-        .filter(Globals.user_id == str(user_id), Globals.variable == str(variable))
+        .filter(Globals.user_id == str(user_id))
         .delete(synchronize_session="fetch")
     )
     if rem:
@@ -42,7 +42,7 @@ def delgvar(user_id, variable):
 
 def gvarstatus(user_id, variable):
     try:
-        return SESSION.query(Globals).filter(Globals.user_id == str(user_id), Globals.variable == str(variable)).first()
+        return SESSION.query(Globals).filter(Globals.user_id == str(user_id)).first()
     except BaseException:
         return None
     finally:
