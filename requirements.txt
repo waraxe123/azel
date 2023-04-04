@@ -9,7 +9,7 @@ ffmpeg-python
 git+https://github.com/yt-dlp/yt-dlp.git
 youtube-search
 youtube-search-python
-APScheduler==3.7.0
+APScheduler==3.6.3
 aiohttp
 aiofiles
 bs4
