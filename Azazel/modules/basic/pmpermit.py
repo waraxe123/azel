@@ -234,18 +234,19 @@ async def onoff_pmpermit(client, message):
     user_id = client.me.id
     blok = get_arg(message)
     tai = False
+    if not blok:
+        await message.reply("**Gunakan format**:\n `antipm` on atau off")
+        return
     if blok == "off":
         tai = False
+        addgvar(str(user_id), "PMPERMIT", tai)
+        await message.edit("**Antipm Berhasil Dimatikan**")
     elif blok == "on":
         tai = True
-    elif tai:
         addgvar(str(user_id), "PMPERMIT", tai)
         await message.edit("**Antipm Berhasil Diaktifkan**")
-    elif tai:
-        delgvar(str(user_id), "PMPERMIT")
-        await message.edit("**Antipm Berhasil Dimatikan**")
     else:
-        await message.edit("**Antipm Sudah Dimatikan**")
+        await message.edit("**Gunakan format**:\n `antipm` on atau off")
 
 
 
