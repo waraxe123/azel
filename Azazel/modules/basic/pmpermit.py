@@ -249,7 +249,7 @@ async def onoff_pmpermit(client: Client, message: Message):
         if h_type:
             await edit_or_reply(message, "**PMPERMIT Sudah Diaktifkan**")
         else:
-            addgvar(str(user_id), "PMPERMIT", h_type)
+            delgvar(str(user_id), "PMPERMIT")
             await edit_or_reply(message, "**PMPERMIT Berhasil Dimatikan**")
     elif h_type:
         addgvar(str(user_id), "PMPERMIT", h_type)
