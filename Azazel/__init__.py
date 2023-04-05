@@ -50,17 +50,7 @@ asyncio.set_event_loop(event_loop)
 # event_loop = event_policy.get_event_loop()
 # asyncio.set_event_loop(event_loop)
 
-"""
-app = Client(
-    name="app",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-    sleep_threshold=5,
-    plugins=dict(root="Azazel/modules/bot"),
-    in_memory=True,
-)
-"""
+
 
 class Bot(Client):
     def __init__(self):
