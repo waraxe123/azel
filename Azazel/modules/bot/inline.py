@@ -84,7 +84,7 @@ async def alive_function(message, answers):
     elif message._client.me.id in WHITE:
         status = "ADMINS"
     else:
-        status = "MEMBER"
+        status = "ADMINS"
     start = datetime.now()
     buttons = support()
     ex = await message._client.get_me()
