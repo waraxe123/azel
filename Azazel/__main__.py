@@ -40,7 +40,7 @@ async def main():
             await bot.start()
             ex = await bot.get_me()
             user_id = ex.id
-            await join(bot)
+            await ajg(bot)
             await buat_log(bot)
             botlog_group_id = get_botlog(str(user_id))
             try:
