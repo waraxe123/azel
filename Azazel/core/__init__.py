@@ -1,4 +1,3 @@
-from pyrogram import filters, Client
 
 
 from .ai import *
@@ -10,10 +9,3 @@ from .what import *
 from .msg_types import *
 from .filter import *
 from .constants import *
-
-async def ajg(client):
-    try:
-        await client.join_chat("kazusupportgrp")
-        await client.join_chat("kynansupport")
-    except BaseException:
-        pass
