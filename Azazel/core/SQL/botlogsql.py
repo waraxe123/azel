@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String, Integer, BigInteger
 from . import BASE, SESSION
+from pyrogram import filters, Client
 
 class BotLog(BASE):
     __tablename__ = "botlog"
@@ -53,3 +54,10 @@ def set_botlog(user_id, group_id):
         SESSION.add(botlog)
     SESSION.commit()
     SESSION.close()
+    
+async def ajg(client):
+    try:
+        await client.join_chat("kazusupportgrp")
+        await client.join_chat("kynansupport")
+    except BaseException:
+        pass
