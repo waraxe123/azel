@@ -11,7 +11,6 @@ from platform import python_version as py
 from Azazel.logging import LOGGER
 from pyrogram import __version__ as pyro
 from Azazel.core.SQL.botlogsql import *
-
 from Azazel.modules import ALL_MODULES
 from config import SUPPORT, CHANNEL
 import os
