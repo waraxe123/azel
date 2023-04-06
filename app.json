@@ -24,7 +24,7 @@
             "value": ""
         },
         "PM_AUTO_BAN": {
-            "description": "Isi Tue",
+            "description": "Isi True",
             "required": true,
             "value": "True"
         },
